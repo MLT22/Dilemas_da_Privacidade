@@ -1,8 +1,14 @@
 public class TesteTabuleiro {
     public static void main(String[] args) {
-        var tab = new Tabuleiro();
         var p1 = new Players();
-        tab.criarTabuleiro();
+        // p1.criarPesonagem();
+        
+        do {
+            p1.andarCasas();
+        } while (p1.posicPlayer < p1.tabuleiroJogo.length - 1);
+        
+
+        }
         
     }
-}
+
