@@ -14,7 +14,7 @@ public class Players {
     }
     int jogarDado(){// sortear um número aleatório entre 1 e 6
        var dado = new Random();
-       int numDado = dado.nextInt(5) + 1;
+       int numDado = dado.nextInt(6) + 1;
        return numDado;
     }
 
@@ -22,7 +22,7 @@ public class Players {
         var sc = new Scanner(System.in);
         int dado = jogarDado();// Pegar o valor do dado;
         int posicInicial = posicao;// guardar a posição do player
-        String guardarCasa = tabuleiroJogo[posicao + 1]; // variavel que vai quardar o valor da casa que o player vai passar
+        String guardarCasa = "" + posicao; // variavel que vai quardar o valor da casa que o player vai passar
         
         System.out.println("\nPrecione qual quer coisa para continuar");// pedir ao usuario para continuar
         sc.nextLine();
@@ -37,10 +37,10 @@ public class Players {
             }
             else{
                 if(posicao < tabuleiroJogo.length - 1){
-                    
+                    guardarCasa = "" + posicao;
                     tabuleiroJogo[posicao] = guardarCasa; // reescreve o valor da casa onde o player estava para o valor antigo da casa
                     posicao++; // faz o player andar 1 casa
-                    guardarCasa = tabuleiroJogo[posicao];// guarda o valor da casa que o player vai passar
+                    // guardarCasa = tabuleiroJogo[posicao];// guarda o valor da casa que o player vai passar
                     tabuleiroJogo[posicao] = nome;
                     
                 }
