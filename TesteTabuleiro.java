@@ -5,7 +5,7 @@ public class TesteTabuleiro {
         
         do {
             p1.andarCasas();
-        } while (p1.posicPlayer < p1.tabuleiroJogo.length - 1);
+        } while (p1.posicao < p1.tabuleiroJogo.length - 1);
         
 
         }

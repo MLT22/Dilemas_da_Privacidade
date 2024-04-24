@@ -3,11 +3,11 @@ import java.util.Scanner;
 
 public class Players {
     String [] tabuleiroJogo = Tabuleiro.criarTabuleiro();
-    int posicPlayer = 0;
-    String player1 = "x";
+    int posicao = 0;
+    String nome = "x";
     
     void criarPesonagem(){
-        tabuleiroJogo[posicPlayer] = player1; //colocando o player na primeira casa do tabuleiro (index 0 do tabuleiro)
+        tabuleiroJogo[posicao] = nome; //colocando o player na primeira casa do tabuleiro (index 0 do tabuleiro)
         for(String i : tabuleiroJogo){
             System.out.print(i + "|");
         }
@@ -20,27 +20,28 @@ public class Players {
 
     void andarCasas(){
         var sc = new Scanner(System.in);
+        int dado = jogarDado();// Pegar o valor do dado;
+        int posicInicial = posicao;// guardar a posição do player
+        String guardarCasa = tabuleiroJogo[posicao + 1]; // variavel que vai quardar o valor da casa que o player vai passar
+        
         System.out.println("\nPrecione qual quer coisa para continuar");// pedir ao usuario para continuar
         sc.nextLine();
-
-        int dado = jogarDado();// Pegar o valor do dado;
-        int posicInicial = posicPlayer;// guardar a posição do player
-        String guardarCasa = tabuleiroJogo[posicPlayer + 1]; // variavel que vai quardar o valor da casa que o player vai passar
         System.out.println("O p1 vai andar: " + dado);
-        while(posicPlayer < posicInicial + dado){
-            if(posicPlayer == 0){// caso o playes esteja na primeira casa vai rescrever o valor no index(0) para "Inicio"
-                tabuleiroJogo[posicPlayer] = "Inicio";
-                posicPlayer += 1; // Fazer o player andar 1 casa
-                tabuleiroJogo[posicPlayer] = player1;
+
+        while(posicao < posicInicial + dado){
+            if(posicao == 0){// caso o playes esteja na primeira casa vai rescrever o valor no index(0) para "Inicio"
+                tabuleiroJogo[posicao] = "Inicio";
+                posicao += 1; // Fazer o player andar 1 casa
+                tabuleiroJogo[posicao] = nome;
                 
             }
             else{
-                if(posicPlayer < tabuleiroJogo.length - 1){
+                if(posicao < tabuleiroJogo.length - 1){
                     
-                    tabuleiroJogo[posicPlayer] = guardarCasa; // reescreve o valor da casa onde o player estava para o valor antigo da casa
-                    posicPlayer++; // faz o player andar 1 casa
-                    guardarCasa = tabuleiroJogo[posicPlayer];// guarda o valor da casa que o player vai passar
-                    tabuleiroJogo[posicPlayer] = player1;
+                    tabuleiroJogo[posicao] = guardarCasa; // reescreve o valor da casa onde o player estava para o valor antigo da casa
+                    posicao++; // faz o player andar 1 casa
+                    guardarCasa = tabuleiroJogo[posicao];// guarda o valor da casa que o player vai passar
+                    tabuleiroJogo[posicao] = nome;
                     
                 }
                 else{// verifica se o player chegou na ultima casa do tabuleiro
@@ -55,7 +56,7 @@ public class Players {
             }
         }
 
-        sc.close();
+        
     }
     
 }
