@@ -4,8 +4,9 @@ public class Tabuleiro {
         tabuleiroInicial[0] = "Inicio";
         tabuleiroInicial[tabuleiroInicial.length - 1] = "Fim";
         for (int i = 1; i < tabuleiroInicial.length - 1;i++){
-            tabuleiroInicial[i] = "" + i;
+            tabuleiroInicial[i] = "";
         }
+        tabuleiroInicial[9] = "*";
         return tabuleiroInicial;
     }
 

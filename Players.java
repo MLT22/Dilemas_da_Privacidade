@@ -3,7 +3,9 @@ import java.util.Scanner;
 
 public class Players {
     String [] tabuleiroJogo = Tabuleiro.criarTabuleiro();
+    
     int posicao = 0;
+    String casa = "Incio";
     String nome = "x";
     
     void criarPesonagem(){
@@ -20,43 +22,55 @@ public class Players {
 
     void andarCasas(){
         var sc = new Scanner(System.in);
-        int dado = jogarDado();// Pegar o valor do dado;
-        int posicInicial = posicao;// guardar a posição do player
-        String guardarCasa = "" + posicao; // variavel que vai quardar o valor da casa que o player vai passar
+        int dado = jogarDado();// Pegar o valor do dado;   
         
         System.out.println("\nPrecione qual quer coisa para continuar");// pedir ao usuario para continuar
         sc.nextLine();
         System.out.println("O p1 vai andar: " + dado);
 
-        while(posicao < posicInicial + dado){
-            if(posicao == 0){// caso o playes esteja na primeira casa vai rescrever o valor no index(0) para "Inicio"
-                tabuleiroJogo[posicao] = "Inicio";
-                posicao += 1; // Fazer o player andar 1 casa
-                tabuleiroJogo[posicao] = nome;
+        if (posicao + dado <= tabuleiroJogo.length - 1){
+            if(tabuleiroJogo[posicao + dado] == ""){
+                tabuleiroJogo[posicao] = casa;
+                casa = tabuleiroJogo[posicao + dado];
+                tabuleiroJogo[posicao + dado] = nome;
+                posicao += dado;
+            }
+            else if (tabuleiroJogo[posicao + dado] == "Fim") {
+                tabuleiroJogo[posicao] = casa;
+                casa = tabuleiroJogo[posicao + dado];
+                tabuleiroJogo[posicao + dado] = nome;
+                posicao += dado;
+                
                 
             }
-            else{
-                if(posicao < tabuleiroJogo.length - 1){
-                    guardarCasa = "" + posicao;
-                    tabuleiroJogo[posicao] = guardarCasa; // reescreve o valor da casa onde o player estava para o valor antigo da casa
-                    posicao++; // faz o player andar 1 casa
-                    // guardarCasa = tabuleiroJogo[posicao];// guarda o valor da casa que o player vai passar
-                    tabuleiroJogo[posicao] = nome;
-                    
-                }
-                else{// verifica se o player chegou na ultima casa do tabuleiro
-                    System.out.println("\n O player venceu");
-                    break;
-                }
+            else if(tabuleiroJogo[posicao + dado] == "*"){
+                tabuleiroJogo[posicao] = casa;
+                casa = tabuleiroJogo[posicao + dado];
+                tabuleiroJogo[posicao + dado] = nome;
+                posicao += dado;
+                System.out.println("Casa especial");
+                
             }
-            System.out.println("\n");// mostra o tabuleiro acada vez que o personagem anda
-            System.out.println("----------------------------------------------------------------------");
-            for(String i : tabuleiroJogo){
-                System.out.print(i+"|");
-            }
+            
         }
 
-        
+        System.out.println("\n");// mostra o tabuleiro acada vez que o personagem anda
+        System.out.println("----------------------------------------------------------------------");
+        for(int i = 0; i < tabuleiroJogo.length;i++){
+            if (tabuleiroJogo[i] == "") {
+                System.out.print(i+"|");
+            }
+          
+            else if (tabuleiroJogo[tabuleiroJogo.length - 1] == nome && i == posicao) {
+                System.out.print(tabuleiroJogo[i]+"|");
+                System.out.println("\nVenceu");
+            }
+            else{
+                System.out.print(tabuleiroJogo[i]+"|");
+            }
+            
+        }
     }
     
+
 }
