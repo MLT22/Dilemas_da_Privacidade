@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TesteTela",
+            "request": "launch",
+            "mainClass": "Telas.TesteTela",
+            "projectName": "Dilemas_da_Privacidade_202da7ce"
+        },
+        {
+            "type": "java",
+            "name": "TesteTela",
+            "request": "launch",
+            "mainClass": "TesteTela",
+            "projectName": "Dilemas_da_Privacidade_202da7ce"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

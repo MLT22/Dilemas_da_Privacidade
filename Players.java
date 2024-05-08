@@ -29,32 +29,39 @@ public class Players {
         System.out.println("O p1 vai andar: " + dado);
 
         if (posicao + dado <= tabuleiroJogo.length - 1){
-            if(tabuleiroJogo[posicao + dado] == ""){
-                tabuleiroJogo[posicao] = casa;
-                casa = tabuleiroJogo[posicao + dado];
-                tabuleiroJogo[posicao + dado] = nome;
-                posicao += dado;
-            }
-            else if (tabuleiroJogo[posicao + dado] == "Fim") {
-                tabuleiroJogo[posicao] = casa;
-                casa = tabuleiroJogo[posicao + dado];
-                tabuleiroJogo[posicao + dado] = nome;
-                posicao += dado;
-                
-                
-            }
-            else if(tabuleiroJogo[posicao + dado] == "*"){
-                tabuleiroJogo[posicao] = casa;
-                casa = tabuleiroJogo[posicao + dado];
-                tabuleiroJogo[posicao + dado] = nome;
-                posicao += dado;
-                System.out.println("Casa especial");
-                
+            switch (tabuleiroJogo[posicao + dado]) {
+                case "":
+                    tabuleiroJogo[posicao] = casa;
+                    casa = tabuleiroJogo[posicao + dado];
+                    tabuleiroJogo[posicao + dado] = nome;
+                    posicao += dado;
+                    break;
+                case "Fim":
+                    tabuleiroJogo[posicao] = casa;
+                    casa = tabuleiroJogo[posicao + dado];
+                    tabuleiroJogo[posicao + dado] = nome;
+                    posicao += dado;
+                    break;
+                case "*":
+                    tabuleiroJogo[posicao] = casa;
+                    casa = tabuleiroJogo[posicao + dado];
+                    tabuleiroJogo[posicao + dado] = nome;
+                    posicao += dado;
+                    System.out.println("Casa especial");
+                    break;
+            
+                default:
+                    break;
             }
             
         }
+        else if (posicao + dado > tabuleiroJogo.length - 1){
+            tabuleiroJogo[posicao] = casa;
+            tabuleiroJogo[tabuleiroJogo.length - 1] = nome;
+            posicao = tabuleiroJogo.length - 1;
+        }
 
-        System.out.println("\n");// mostra o tabuleiro acada vez que o personagem anda
+        System.out.println("\n");// mostra o tabuleiro
         System.out.println("----------------------------------------------------------------------");
         for(int i = 0; i < tabuleiroJogo.length;i++){
             if (tabuleiroJogo[i] == "") {
@@ -64,12 +71,14 @@ public class Players {
             else if (tabuleiroJogo[tabuleiroJogo.length - 1] == nome && i == posicao) {
                 System.out.print(tabuleiroJogo[i]+"|");
                 System.out.println("\nVenceu");
+                break;
             }
             else{
                 System.out.print(tabuleiroJogo[i]+"|");
             }
             
         }
+        
     }
     
 
