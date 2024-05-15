@@ -1,2 +1,2 @@
 # Dilemas_da_Privacidade
-PI: aperfeiçoando o jodo da LGPD criado pelos alunos da escola da Vila
+PI: Acurar ou sofisticar a gamificação da Lei Geral da Proteção de Dados executada pelos alunos da Escola da Vila, na forma de um tabuleiro.
