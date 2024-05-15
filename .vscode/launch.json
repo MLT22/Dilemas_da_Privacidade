@@ -6,6 +6,34 @@
     "configurations": [
         {
             "type": "java",
+            "name": "JogoDaVida",
+            "request": "launch",
+            "mainClass": "com.dilemadaprivacidade/com.dilema.JogoDaVida",
+            "projectName": "dilema"
+        },
+        {
+            "type": "java",
+            "name": "DiceRoleTabuleiro",
+            "request": "launch",
+            "mainClass": "com.dilemadaprivacidade/com.dilema.DiceRoleTabuleiro",
+            "projectName": "dilema"
+        },
+        {
+            "type": "java",
+            "name": "DiceRoleTabuleiro",
+            "request": "launch",
+            "mainClass": "com.DiceRoleTabuleiro",
+            "projectName": "dilema"
+        },
+        {
+            "type": "java",
+            "name": "TesteTabuleiro",
+            "request": "launch",
+            "mainClass": "Classes.TesteTabuleiro",
+            "projectName": "Dilemas_da_Privacidade_202da7ce"
+        },
+        {
+            "type": "java",
             "name": "TesteTela",
             "request": "launch",
             "mainClass": "Telas.TesteTela",
