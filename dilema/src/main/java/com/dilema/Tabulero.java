@@ -15,7 +15,7 @@ public class Tabulero {
         return (tamanhoPixel / 2) + (tamanhoPixel * posicaoX);
     }
     public int converteTela1(int posicaoX){
-        return (tamanhoPixel / 100) + (tamanhoPixel * posicaoX);
+        return (tamanhoPixel * posicaoX);
     }
 
 
