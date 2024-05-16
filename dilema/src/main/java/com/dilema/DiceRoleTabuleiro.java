@@ -29,10 +29,13 @@ public class DiceRoleTabuleiro extends Application {
     public Label resultadoDado;
 
     // Escolhendo o tamanho do tabulero
-    public static final int tileSize = 40; // Tamanhao de cada casa
-    public static final int width = 10; //Largura do tabulero
-    public static final int height = 10; //Altura do tabuelro
     public Tabulero tabulero = new Tabulero();
+    public static final int tileSize = 40; // Tamanhao de cada casa
+    public static final int width = 20; //Largura do tabulero
+    public static final int height = 10; //Altura do tabuelro
+    
+
+
 
     // Criação dos players
     public int posicaoCirculo[][] = new int[10][10];
@@ -48,10 +51,6 @@ public class DiceRoleTabuleiro extends Application {
     public boolean vezPlayer2 = true;
 
   
-
-
-    public int posC1 = 1;
-    public int posC2 = 1;
 
 
 
@@ -75,12 +74,19 @@ public class DiceRoleTabuleiro extends Application {
                 tileGroup.getChildren().add(tile);
             }
         }
+        for(int i = 0; i < tabulero.posicTabuleiroX.length;i++){
+            Tile tile = new Tile();
+            tile.setTranslateX(tabulero.converteTela1(tabulero.posicTabuleiroX[i]));
+            tile.setTranslateY(tabulero.converteTela1(tabulero.posicTabuleiroY[i]));
+            tileGroup.getChildren().add(tile);
+        }
+        
 
 
         // criando o botão para jogar o dado
         var botao1 = new Button("Player1");
-        botao1.setTranslateX(80);
-        botao1.setTranslateY(420);
+        botao1.setTranslateX(tabulero.converteTela(0));
+        botao1.setTranslateY(tabulero.converteTela(10));
         botao1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
@@ -94,8 +100,8 @@ public class DiceRoleTabuleiro extends Application {
         });
 
         var botao2 = new Button("player2");
-        botao2.setTranslateX(400);
-        botao2.setTranslateY(420);
+        botao2.setTranslateX(tabulero.converteTela(2));
+        botao2.setTranslateY(tabulero.converteTela(10));
         botao2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
@@ -107,8 +113,8 @@ public class DiceRoleTabuleiro extends Application {
             }
         });
         botaoJogo = new Button("Começar jogo");
-        botaoJogo.setTranslateX(280);
-        botaoJogo.setTranslateY(420);
+        botaoJogo.setTranslateX(tabulero.converteTela(6));
+        botaoJogo.setTranslateY(tabulero.converteTela(10));
         botaoJogo.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
@@ -118,8 +124,8 @@ public class DiceRoleTabuleiro extends Application {
         });
 
         resultadoDado = new Label("0");
-        resultadoDado.setTranslateX(150);
-        resultadoDado.setTranslateY(440);
+        resultadoDado.setTranslateX(tabulero.converteTela(11));
+        resultadoDado.setTranslateY(tabulero.converteTela(10));
 
         // imagem do tabuleiro
         // Image img = new Image("xxxx");
@@ -133,19 +139,6 @@ public class DiceRoleTabuleiro extends Application {
         tileGroup.getChildren().addAll(p1.player,p2.player,botao1,botao2,botaoJogo,resultadoDado);//adicionar bgImage no inicio
 
         return root;
-    }
-
-
-
-
-   
-
-
-
-    private int getRand(){//pegar o numero do dado
-        var dado = new Random();
-        rand = dado.nextInt(6) + 1;
-        return rand;
     }
 
   

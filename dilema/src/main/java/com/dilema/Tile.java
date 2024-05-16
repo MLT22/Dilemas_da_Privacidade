@@ -11,4 +11,12 @@ public class Tile extends Rectangle{
         setFill(Color.PINK);
         setStroke(Color.BLACK);
     }
+    public Tile(){
+        setWidth(DiceRoleTabuleiro.tileSize);
+        setHeight(DiceRoleTabuleiro.tileSize);
+
+        setFill(Color.ORANGE);
+        setStroke(Color.BLACK);
+    }
+    
 }
