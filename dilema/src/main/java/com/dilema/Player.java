@@ -9,6 +9,7 @@ import javafx.util.Duration;
 
 public class Player {
     Tabulero tabulero = new Tabulero();
+    Sorteador sorteador = new Sorteador();
 
     public int posX = 0;
     public int posY = 0;
@@ -20,38 +21,36 @@ public class Player {
         player = new Circle(tamanhoPlayer);
         player.setId(nome);
         player.getStyleClass().add("style.css");
-        player.setTranslateX(tabulero.converteTela(tabulero.posicTabuleiroX[posX]));
-        player.setTranslateY(tabulero.converteTela(tabulero.posicTabuleiroY[posY]));
+        player.setTranslateX(tabulero.convertePontoCentral(tabulero.posicTabuleiroX[posX]));
+        player.setTranslateY(tabulero.convertePontoCentral(tabulero.posicTabuleiroY[posY]));
         
     }
 
-    public int jogarDado(){// sortear um número aleatório entre 1 e 6
-       var dado = new Random();
-       int numDado = dado.nextInt(6) + 1;
-       return numDado;
-    }
+   
 
     public void andarCasas(){
-        int numDado = jogarDado();
+        int numDado = sorteador.sortearDado();
         numTeste = numDado;
-        for (int i = 1; i <= numDado;i++){
-            posX ++;
-            posY ++;
-            // animacaoAndarCasas(posX, posY);
-            player.setTranslateX(tabulero.converteTela(tabulero.posicTabuleiroX[posX]));
-            player.setTranslateY(tabulero.converteTela(tabulero.posicTabuleiroY[posY]));
-            
-            
-        }
+        // for (int i = 1; i <= numDado;i++){
+        //     // animacaoAndarCasas(posX, posY);
+        // }
+        posX = posX + numDado >= tabulero.posicTabuleiroX.length ? tabulero.posicTabuleiroX.length - 1 : posX + numDado;
+        posY = posY + numDado >= tabulero.posicTabuleiroY.length ? tabulero.posicTabuleiroY.length - 1 : posY + numDado; ;
+        System.out.println("O player vai para a casa: " + posX);
+
+        posX = tabulero.verificarCasa(posX);
+        posY = posX;
+        player.setTranslateX(tabulero.convertePontoCentral(tabulero.posicTabuleiroX[posX]));
+        player.setTranslateY(tabulero.convertePontoCentral(tabulero.posicTabuleiroY[posY]));
+    }
        
         
         
         
-    }
     public void animacaoAndarCasas(int posicFinalX,int posicFinalY){
         TranslateTransition animacao = new TranslateTransition(Duration.millis(1000), player);
-        animacao.setToX(tabulero.converteTela(tabulero.posicTabuleiroX[posX]));
-        animacao.setToY(tabulero.converteTela(tabulero.posicTabuleiroY[posicFinalY]));
+        animacao.setToX(tabulero.convertePontoCentral(tabulero.posicTabuleiroX[posX]));
+        animacao.setToY(tabulero.convertePontoCentral(tabulero.posicTabuleiroY[posicFinalY]));
         animacao.setAutoReverse(false);
         animacao.play();
     }

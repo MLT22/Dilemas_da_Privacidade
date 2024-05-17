@@ -68,25 +68,33 @@ public class DiceRoleTabuleiro extends Application {
         for(int i = 0 ; i < height; i++){
             for (int j = 0; j < width; j++) {
                 // Mostrando o tabuleiro na tela
-                Tile tile = new Tile(tileSize,tileSize);
+                Tile tile = new Tile("tela");
                 tile.setTranslateX(j * tileSize);
                 tile.setTranslateY(i * tileSize);
                 tileGroup.getChildren().add(tile);
             }
         }
         for(int i = 0; i < tabulero.posicTabuleiroX.length;i++){
-            Tile tile = new Tile();
-            tile.setTranslateX(tabulero.converteTela1(tabulero.posicTabuleiroX[i]));
-            tile.setTranslateY(tabulero.converteTela1(tabulero.posicTabuleiroY[i]));
+            Tile tile = new Tile("rota");
+            tile.setTranslateX(tabulero.converteQuadrado(tabulero.posicTabuleiroX[i]));
+            tile.setTranslateY(tabulero.converteQuadrado(tabulero.posicTabuleiroY[i]));
             tileGroup.getChildren().add(tile);
         }
+        for(int i = 0; i < tabulero.posicCasaEspecial.length;i++){
+            Tile tile = new Tile("casaEspecial");
+            tile.setTranslateX(tabulero.converteQuadrado(tabulero.posicTabuleiroX[tabulero.posicCasaEspecial[i]]));
+            tile.setTranslateY(tabulero.converteQuadrado(tabulero.posicTabuleiroY[tabulero.posicCasaEspecial[i]]));
+            tileGroup.getChildren().add(tile);
+        }
+
+
         
 
 
         // criando o botão para jogar o dado
         var botao1 = new Button("Player1");
-        botao1.setTranslateX(tabulero.converteTela(0));
-        botao1.setTranslateY(tabulero.converteTela(10));
+        botao1.setTranslateX(tabulero.convertePontoCentral(0));
+        botao1.setTranslateY(tabulero.convertePontoCentral(10));
         botao1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
@@ -100,8 +108,8 @@ public class DiceRoleTabuleiro extends Application {
         });
 
         var botao2 = new Button("player2");
-        botao2.setTranslateX(tabulero.converteTela(2));
-        botao2.setTranslateY(tabulero.converteTela(10));
+        botao2.setTranslateX(tabulero.convertePontoCentral(2));
+        botao2.setTranslateY(tabulero.convertePontoCentral(10));
         botao2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
@@ -113,8 +121,8 @@ public class DiceRoleTabuleiro extends Application {
             }
         });
         botaoJogo = new Button("Começar jogo");
-        botaoJogo.setTranslateX(tabulero.converteTela(6));
-        botaoJogo.setTranslateY(tabulero.converteTela(10));
+        botaoJogo.setTranslateX(tabulero.convertePontoCentral(6));
+        botaoJogo.setTranslateY(tabulero.convertePontoCentral(10));
         botaoJogo.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
@@ -124,8 +132,8 @@ public class DiceRoleTabuleiro extends Application {
         });
 
         resultadoDado = new Label("0");
-        resultadoDado.setTranslateX(tabulero.converteTela(11));
-        resultadoDado.setTranslateY(tabulero.converteTela(10));
+        resultadoDado.setTranslateX(tabulero.convertePontoCentral(11));
+        resultadoDado.setTranslateY(tabulero.convertePontoCentral(10));
 
         // imagem do tabuleiro
         // Image img = new Image("xxxx");
