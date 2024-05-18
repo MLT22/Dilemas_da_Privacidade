@@ -2,10 +2,6 @@ package com.dilema;
 
 
 
-import java.util.Random;
-
-
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,6 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 import javafx.stage.Stage;
@@ -136,15 +134,15 @@ public class DiceRoleTabuleiro extends Application {
         resultadoDado.setTranslateY(tabulero.convertePontoCentral(10));
 
         // imagem do tabuleiro
-        // Image img = new Image("xxxx");
-        // ImageView bgImage = ImagemView();
-        // bgImage.setImage(img);
-        // bgImage.setFitHeight(800);
-        // bgImage.setFitwidth(800);
+        Image img = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/prototipo.png"));
+        ImageView bgImage = new ImageView();
+        bgImage.setImage(img);
+        bgImage.setFitHeight(height * tileSize);
+        bgImage.setFitWidth(width * tileSize);
 
         
         
-        tileGroup.getChildren().addAll(p1.player,p2.player,botao1,botao2,botaoJogo,resultadoDado);//adicionar bgImage no inicio
+        tileGroup.getChildren().addAll(bgImage,p1.player,p2.player,botao1,botao2,botaoJogo,resultadoDado);//adicionar bgImage no inicio
 
         return root;
     }
