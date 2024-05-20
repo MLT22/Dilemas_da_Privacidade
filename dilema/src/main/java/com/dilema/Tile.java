@@ -7,22 +7,22 @@ public class Tile extends Rectangle{
     public Tile(String tipoQuadrado){
 
         if (tipoQuadrado.equals("tela")){
-            setWidth(DiceRoleTabuleiro.tileSize);
-            setHeight(DiceRoleTabuleiro.tileSize);
+            setWidth(TelaTabulero.tileSize);
+            setHeight(TelaTabulero.tileSize);
     
             setFill(Color.PINK);
             setStroke(Color.BLACK);
         }
         else if (tipoQuadrado.equals("rota")) {
-            setWidth(DiceRoleTabuleiro.tileSize);
-            setHeight(DiceRoleTabuleiro.tileSize);
+            setWidth(TelaTabulero.tileSize);
+            setHeight(TelaTabulero.tileSize);
 
             setFill(Color.ORANGE);
             setStroke(Color.BLACK);
         }
         else if (tipoQuadrado.equals("casaEspecial")) {
-            setWidth(DiceRoleTabuleiro.tileSize);
-            setHeight(DiceRoleTabuleiro.tileSize);
+            setWidth(TelaTabulero.tileSize);
+            setHeight(TelaTabulero.tileSize);
 
             setFill(Color.BLUE);
             setStroke(Color.BLACK);
