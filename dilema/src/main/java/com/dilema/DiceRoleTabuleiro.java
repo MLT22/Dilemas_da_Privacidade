@@ -1,7 +1,8 @@
 package com.dilema;
 
 
-
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -104,6 +105,11 @@ public class DiceRoleTabuleiro extends Application {
                 }
             }
         });
+        root.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if(event.getCode() ==  KeyCode.Z){
+                botao1.fire();
+            }
+        });
 
         var botao2 = new Button("player2");
         botao2.setTranslateX(tabulero.convertePontoCentral(2));
@@ -156,6 +162,7 @@ public class DiceRoleTabuleiro extends Application {
         primaryStage.setTitle("Dilemas da Privacicade");
         primaryStage.setScene(cena);
         primaryStage.show();
+        primaryStage.setFullScreen(true);
     }
 
 
