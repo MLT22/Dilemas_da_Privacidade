@@ -38,7 +38,18 @@ public class TelaInicio  extends Application{
     setButtonSize(buttons, 125, 75);
     addHoverEffect(jogar, comojogar, sair);
 
-    HBox meio = new HBox(107);
+    comojogar.setOnAction(event -> {
+      try {
+        TelaComoJogar telaComoJogar = new TelaComoJogar();
+        Stage newStage = new Stage();
+        telaComoJogar.start(newStage);
+        primaryStage.close();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }      
+    });
+
+    HBox meio = new HBox(109);
       meio.setAlignment(Pos.CENTER_LEFT);
       meio.getChildren().addAll(cartas, comojogar);
 
@@ -54,10 +65,11 @@ public class TelaInicio  extends Application{
     root.setTop(titulo);
     root.setCenter(buttonBox);
     
-    Scene scene = new Scene(root, 600, 500);
-      primaryStage.setTitle("Dilemas da Privacidade: Tela Inicial");
-      primaryStage.setScene(scene);
-      primaryStage.show();
+      Scene scene = new Scene(root, 600, 500);
+        primaryStage.setTitle("Dilemas da Privacidade: Tela Inicial");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        primaryStage.setResizable(false);
     }
 
     private void setButtonSize(Button[] buttons, double width, double height) {

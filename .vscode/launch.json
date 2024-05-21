@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TelaComoJogar",
+            "request": "launch",
+            "mainClass": "com.dilemadaprivacidade/com.dilema.TelaComoJogar",
+            "projectName": "dilema"
+        },
+        {
+            "type": "java",
             "name": "falha",
             "request": "launch",
             "mainClass": "com.dilemadaprivacidade/com.dilema.falha",
