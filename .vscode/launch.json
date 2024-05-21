@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "falha",
+            "request": "launch",
+            "mainClass": "com.dilemadaprivacidade/com.dilema.falha",
+            "projectName": "dilema"
+        },
+        {
+            "type": "java",
             "name": "TelaTabulero",
             "request": "launch",
             "mainClass": "com.dilemadaprivacidade/com.dilema.TelaTabulero",
