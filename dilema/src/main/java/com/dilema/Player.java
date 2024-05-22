@@ -1,7 +1,6 @@
 package com.dilema;
 
 
-
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.image.Image;
@@ -10,27 +9,34 @@ import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
 public class Player {
-    Tabulero tabulero = new Tabulero();
-    Sorteador sorteador = new Sorteador();
-    TelaTabulero tela = new TelaTabulero();
+    private Tabuleiro tabuleiro = new Tabuleiro();
+    private Sorteador sorteador = new Sorteador();
+ 
 
-    public int posX = 0;
-    public int posY = 0;
+    private int posic = 0;
+
     public boolean vezJogador = false;
 
-    public ImageView player;
-    public Image imagemPlayer;
+    private ImageView player;
+    private Image imagemPlayer;
     public int numTeste;
 
 
     public Player(String cor){
-        imagemPlayer = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/" + cor));
+        imagemPlayer = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/peoes/" + cor));
         player = new ImageView(imagemPlayer);
         player.setFitHeight(40);
         player.getStyleClass().add("style.css");
-        player.setTranslateX(tabulero.converteQuadrado(tabulero.posicTabuleiroX[posX]));
-        player.setTranslateY(tabulero.converteQuadrado(tabulero.posicTabuleiroY[posY]));
+        player.setTranslateX(tabuleiro.colocarPlayerX(posic));
+        player.setTranslateY(tabuleiro.colocarPlayerY(posic));
         
+    }
+
+    
+
+    @SuppressWarnings("exports")
+    public ImageView getPlayer() {
+        return player;
     }
 
    
@@ -38,7 +44,6 @@ public class Player {
     public void andarCasas() {
         int numDado = sorteador.sortearDado();//sortear um número de 1 - 6
         numTeste = numDado;//variavel para mostrar o valor tirado no dado, no tabulero
-
         SequentialTransition sequenciaDeAnimacao = new SequentialTransition();//salvar cada animação de mudança de casa
 
         // Andar de casa em casa da posX ate posX + numdado
@@ -46,28 +51,29 @@ public class Player {
             TranslateTransition animacaoDeCadaCasa = new TranslateTransition(Duration.millis(500), player);
 
             // Verificar qual é a proxima casa
-            int proxPosicX = (posX + i) % tabulero.posicTabuleiroX.length;
-            int proxPosicY = (posY + i) % tabulero.posicTabuleiroY.length;
+            int proxPosic = (posic + i) % tabuleiro.getLength();
+            
             // Animação do player indo para a proxima casa
-            animacaoDeCadaCasa.setToX(tabulero.converteQuadrado(tabulero.posicTabuleiroX[proxPosicX]));
-            animacaoDeCadaCasa.setToY(tabulero.converteQuadrado(tabulero.posicTabuleiroY[proxPosicY]));
+            animacaoDeCadaCasa.setToX(tabuleiro.colocarPlayerX(proxPosic));
+            animacaoDeCadaCasa.setToY(tabuleiro.colocarPlayerY(proxPosic));
             // Mudando o valor do player para a nova casa que ele foi
             animacaoDeCadaCasa.setOnFinished(e -> {
-                posX = proxPosicX;
-                posY = proxPosicY;
+                posic = proxPosic;
+                
             });
             // adicionando todas as animaçoes do player andando apara uma sequencia de animação
             sequenciaDeAnimacao.getChildren().add(animacaoDeCadaCasa);
         }
         //Apos o player andar todas as casas que ele precisa, verificar a casa na qual caiu
         sequenciaDeAnimacao.setOnFinished(e -> {
-            posX = tabulero.verificarCasa(posX);
-            posY = posX;
-            player.setTranslateX(tabulero.converteQuadrado(tabulero.posicTabuleiroX[posX]));
-            player.setTranslateY(tabulero.converteQuadrado(tabulero.posicTabuleiroY[posY]));
+            posic = tabuleiro.verificarCasa(posic);
+
+            player.setTranslateX(tabuleiro.colocarPlayerX(posic));
+            player.setTranslateY(tabuleiro.colocarPlayerY(posic));
         });
 
         sequenciaDeAnimacao.play();
+        
     }
     
     

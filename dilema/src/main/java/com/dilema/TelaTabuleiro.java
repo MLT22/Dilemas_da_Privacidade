@@ -26,18 +26,20 @@ import javafx.stage.Stage;
 /**
  * JavaFX App
  */
-public class TelaTabulero extends Application {
+public class TelaTabuleiro extends Application {
 
 
-    public Label resultadoDado;
+    private Label resultadoDado;
 
-    // Escolhendo o tamanho do tabulero
-    public Tabulero tabulero = new Tabulero();
-    public static final int tileSize = 40; // Tamanhao de cada casa
-    public static final int width = 20; //Largura do tabulero
-    public static final int height = 10; //Altura do tabuelro
+    // Escolhendo o tamanho do tabuleiro
+    private Tabuleiro tabuleiro = new Tabuleiro();
+    private static final int tileSize = 40; // Tamanhao de cada casa
+    private static final int width = 20; //Largura do tabulero
+    private static final int height = 10; //Altura do tabuelro
     
-
+    public static int getTilesize() {
+        return tileSize;
+    }
 
 
     // Criação dos players
@@ -79,31 +81,6 @@ public class TelaTabulero extends Application {
         root.setPrefSize(width * tileSize, (height * tileSize) + 80);
         root.getChildren().addAll(tileGroup);
 
-        // Mostrar grade na tela
-        // for(int i = 0 ; i < height; i++){
-        //     for (int j = 0; j < width; j++) {
-        //         // Mostrando o tabuleiro na tela
-        //         Tile tile = new Tile("tela");
-        //         tile.setTranslateX(j * tileSize);
-        //         tile.setTranslateY(i * tileSize);
-        //         tileGroup.getChildren().add(tile);
-        //     }
-        // }
-        // Mostrar a rota do tabulero 
-        // for(int i = 0; i < tabulero.posicTabuleiroX.length;i++){
-        //     Tile tile = new Tile("rota");
-        //     tile.setTranslateX(tabulero.converteQuadrado(tabulero.posicTabuleiroX[i]));
-        //     tile.setTranslateY(tabulero.converteQuadrado(tabulero.posicTabuleiroY[i]));
-        //     tileGroup.getChildren().add(tile);
-        // }
-        //  Mostrar as casas especiais
-        // for(int i = 0; i < tabulero.posicCasaEspecial.length;i++){
-        //     Tile tile = new Tile("casaEspecial");
-        //     tile.setTranslateX(tabulero.converteQuadrado(tabulero.posicTabuleiroX[tabulero.posicCasaEspecial[i]]));
-        //     tile.setTranslateY(tabulero.converteQuadrado(tabulero.posicTabuleiroY[tabulero.posicCasaEspecial[i]]));
-        //     tileGroup.getChildren().add(tile);
-        // }
-        
 
         // criando um num de jogadores
         numeroDeJogadores("amarelo.png", "ciano.png","laranja.png");
@@ -112,8 +89,8 @@ public class TelaTabulero extends Application {
 
         // criando o botão para jogar o dado
         var botaoJogar = new Button("Jogar dado");
-        botaoJogar.setTranslateX(tabulero.convertePontoCentral(0));
-        botaoJogar.setTranslateY(tabulero.convertePontoCentral(10));
+        botaoJogar.setTranslateX(tabuleiro.convertePontoCentral(0));
+        botaoJogar.setTranslateY(tabuleiro.convertePontoCentral(10));
         botaoJogar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
@@ -130,11 +107,11 @@ public class TelaTabulero extends Application {
 
         // Número tirado no dado
         resultadoDado = new Label("0");
-        resultadoDado.setTranslateX(tabulero.convertePontoCentral(11));
-        resultadoDado.setTranslateY(tabulero.convertePontoCentral(10));
+        resultadoDado.setTranslateX(tabuleiro.convertePontoCentral(11));
+        resultadoDado.setTranslateY(tabuleiro.convertePontoCentral(10));
 
         // imagem do tabuleiro
-        Image img = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/prototipo.png"));
+        Image img = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/tabuleiro/prototipo.png"));
         ImageView bgImage = new ImageView();
         bgImage.setImage(img);
         bgImage.setFitHeight(height * tileSize);
@@ -143,7 +120,7 @@ public class TelaTabulero extends Application {
         // Adiciona elementos à tela
         tileGroup.getChildren().add(bgImage); // Adiciona a imagem do tabuleiro
         for (Player jogador : jogadores) { // Adiciona os jogadores ao grupo
-            tileGroup.getChildren().add(jogador.player);
+            tileGroup.getChildren().add(jogador.getPlayer());
         }
         tileGroup.getChildren().addAll(botaoJogar, resultadoDado); // Adiciona o botão e o label de resultado
 
