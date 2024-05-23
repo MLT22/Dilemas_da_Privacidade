@@ -1,4 +1,6 @@
-package com.dilema;
+package com.dilema.classes;
+
+import com.dilema.telas.TelaTabuleiro;
 
 public class Tabuleiro {
 

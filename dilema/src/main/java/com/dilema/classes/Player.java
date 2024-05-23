@@ -1,4 +1,4 @@
-package com.dilema;
+package com.dilema.classes;
 
 
 import javafx.animation.SequentialTransition;

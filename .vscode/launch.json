@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TelaTabuleiro",
+            "request": "launch",
+            "mainClass": "com.dilemadaprivacidade/com.dilema.telas.TelaTabuleiro",
+            "projectName": "dilema"
+        },
+        {
+            "type": "java",
             "name": "TelaInicio",
             "request": "launch",
             "mainClass": "com.dilemadaprivacidade/com.dilema.Telas.TelaInicio",

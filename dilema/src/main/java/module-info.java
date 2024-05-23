@@ -3,6 +3,6 @@ module com.dilemadaprivacidade {
     requires javafx.fxml;
     requires javafx.graphics;
 
-    opens com.dilema to javafx.fxml;
-    exports com.dilema;
+    opens com.dilema.telas to javafx.fxml;
+    exports com.dilema.telas;
 }
