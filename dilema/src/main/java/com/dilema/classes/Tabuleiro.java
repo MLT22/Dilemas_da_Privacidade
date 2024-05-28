@@ -9,7 +9,6 @@ public class Tabuleiro {
    
     private int [] posicTabuleiroX = {1,2,2,2,2,2,2,3,4,4,4,4,4,4,5,6,6,6,6,6,6,7,8,8,8,8,8,8,9,10,10,10,10,10,10,11,12,12,12,12,12,12,13,14,14,14,14,14,14,15,16,16,16,16,16,16,17,18};
     private int [] posicTabuleiroY = {2,2,3,4,5,6,7,7,7,6,5,4,3,2,2,2,3,4,5,6,7,7,7,6,5,4,3,2,2,2,3,4,5,6,7,7,7,6,5,4,3,2,2,2,3,4,5,6,7,7,7,6,5,4,3,2,2,2};
-    private int [] posicCasaEspecial = {5,11,18,22,27,32,37,41,46,51};
      
 
     public int getIndexPosicTabuleiroX(int index) {
@@ -37,24 +36,26 @@ public class Tabuleiro {
         return (tamanhoPixel / 2) + (tamanhoPixel * posicaoX);
     }
     public int converteQuadrado(int posicaoX){
-        return (tamanhoPixel * posicaoX);
+        return (tamanhoPixel * posicaoX) + 10;
     }
     
-    public int verificarCasa(int posicX){
+    public int verificarCasa(int posic){
         int posicFinal = 0;
-        // verirfiacar se a posicX do player faz parte da lista das casas especiais
-        for (int i : posicCasaEspecial) {
+        if (posic == getLength() - 1){
+            System.out.println("Venceu");
+        }
+        else{
+            CasaEspecial casaEspecial = new CasaEspecial();
             
-            if (posicX == i){
-                posicFinal = casaEspecial(posicX);
-
-                break;
+            // verirfiacar se a posicX do player faz parte da lista das casas especiais
+            if (casaEspecial.verificarCasaEspecial(posicFinal)){
+                
             }
+            if (posicFinal == 0) {
+                posicFinal = posic;
+            }
+            System.out.println("Vai parar na casa:"+ posicFinal);
         }
-        if (posicFinal == 0) {
-            posicFinal = posicX;
-        }
-        System.out.println("Vai parar na casa:"+ posicFinal);
         return posicFinal;
         
     }

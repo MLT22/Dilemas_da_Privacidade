@@ -13,6 +13,13 @@
         },
         {
             "type": "java",
+            "name": "CartaPositivaScreen",
+            "request": "launch",
+            "mainClass": "com.dilemadaprivacidade/com.dilema.telas.CartaPositivaScreen",
+            "projectName": "dilema"
+        },
+        {
+            "type": "java",
             "name": "TelaConfigurarJogador",
             "request": "launch",
             "mainClass": "com.dilemadaprivacidade/com.dilema.telas.TelaConfigurarJogador",

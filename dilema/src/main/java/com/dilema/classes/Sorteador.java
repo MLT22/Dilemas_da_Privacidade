@@ -16,7 +16,7 @@ public class Sorteador {
     }
     public int sortearNumCasas(){
         var dado = new Random();
-        int numCasasAndar = dado.nextInt(3) + 1;
+        int numCasasAndar = dado.nextInt(3) + 2;
         return numCasasAndar;
     }
 

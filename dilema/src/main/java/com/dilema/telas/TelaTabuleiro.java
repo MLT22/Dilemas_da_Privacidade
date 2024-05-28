@@ -36,7 +36,7 @@ public class TelaTabuleiro extends Application {
 
     // Escolhendo o tamanho do tabuleiro
     private Tabuleiro tabuleiro = new Tabuleiro();
-    private static final int tileSize = 40; // Tamanhao de cada casa
+    private static final int tileSize = 50; // Tamanhao de cada casa
     private static final int width = 20; //Largura do tabulero
     private static final int height = 10; //Altura do tabuelro
     
@@ -87,7 +87,20 @@ public class TelaTabuleiro extends Application {
 
         // criando um num de jogadores
         numeroDeJogadores("amarelo.png", "ciano.png","laranja.png");
-        
+
+       // Botão para abrir a tela de Carta Positiva
+       Button abrirCartaPositivaButton = new Button("Abrir Carta Positiva");
+       abrirCartaPositivaButton.setTranslateX(tabuleiro.convertePontoCentral(5));
+       abrirCartaPositivaButton.setTranslateY(tabuleiro.convertePontoCentral(10));
+       abrirCartaPositivaButton.setOnAction(e -> {
+           CartaPositivaScreen cartaPositivaScreen = new CartaPositivaScreen();
+           Stage cartaStage = new Stage();
+           try {
+               cartaPositivaScreen.start(cartaStage);
+           } catch (Exception ex) {
+               ex.printStackTrace();
+           }
+       });
 
 
         // criando o botão para jogar o dado
@@ -95,8 +108,10 @@ public class TelaTabuleiro extends Application {
         botaoJogar.setTranslateX(tabuleiro.convertePontoCentral(0));
         botaoJogar.setTranslateY(tabuleiro.convertePontoCentral(10));
         botaoJogar.setOnAction(new EventHandler<ActionEvent>() {
+        
             @Override
             public void handle(ActionEvent event){
+            
             jogarVez();
             }
         });
@@ -125,7 +140,7 @@ public class TelaTabuleiro extends Application {
         for (Player jogador : jogadores) { // Adiciona os jogadores ao grupo
             tileGroup.getChildren().add(jogador.getPlayer());
         }
-        tileGroup.getChildren().addAll(botaoJogar, resultadoDado); // Adiciona o botão e o label de resultado
+        tileGroup.getChildren().addAll(botaoJogar, resultadoDado, abrirCartaPositivaButton); // Adiciona o botão e o label de resultado
 
         return root;
     }
