@@ -48,7 +48,9 @@ public class TelaInicio  extends Application{
         e.printStackTrace();
       }      
     });
-
+    sair.setOnAction(event -> {
+      primaryStage.close();
+    });
     HBox meio = new HBox(109);
       meio.setAlignment(Pos.CENTER_LEFT);
       meio.getChildren().addAll(cartas, comojogar);
