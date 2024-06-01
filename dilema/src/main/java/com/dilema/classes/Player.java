@@ -10,6 +10,7 @@ public class Player {
     private Tabuleiro tabuleiro = new Tabuleiro();
     private Sorteador sorteador = new Sorteador();
     private Movimento animacao = new Movimento();
+    private CasaEspecial casaEspecial = new CasaEspecial();
 
     private int posic = 0;
     public boolean vezJogador = false;
@@ -34,13 +35,18 @@ public class Player {
         return player;
     }
 
-    public void andarCasas() {
+    public void andarCasas(Runnable finalAndarCasa) {
         int numDado = sorteador.sortearDado(); // sortear um número de 1 - 6
         numTeste = numDado; // variável para mostrar o valor tirado no dado, no tabulero
 
         animacao.andarCasas(numDado, posic, player, () -> {
             posic = (posic + numDado) < tabuleiro.getLength() ? posic + numDado : tabuleiro.getLength() - 1;
+            tabuleiro.verificarCasa(posic, player,() -> {
+                posic = tabuleiro.getPosicFinal();
+                finalAndarCasa.run();
+            });
+ 
         });
-        
+
     }
 }

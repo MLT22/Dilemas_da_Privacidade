@@ -1,0 +1,89 @@
+/* Background style for the VBox */
+.carta-positiva-vbox-style {
+    -fx-background-color: #4285F4;
+    -fx-background-radius: 20;
+    -fx-padding: 20;
+}
+
+/* Style for the label "Carta Positiva" */
+.carta-positiva-label {
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-font-family: "Times New Roman";
+    -fx-background-color: #283593;
+    -fx-padding: 10;
+    -fx-background-radius: 10;
+   
+}
+
+/* Style for the TextArea */
+.carta-positiva-content {
+    -fx-background-color: #BBDEFB;
+    -fx-padding: 10;
+    -fx-background-radius: 10;
+    -fx-font-size: 20px;
+    -fx-font-family: "Times New Roman";
+    -fx-text-fill: rgb(0, 0, 0);
+}
+
+
+/* Style for the buttons */
+.carta-positiva-botao-style {
+    -fx-font-size: 18px;
+    -fx-text-fill: white;
+    -fx-font-family: "Times New Roman";
+    -fx-background-color: #283593;
+    -fx-padding: 10;
+    -fx-background-radius: 10;
+}
+.carta-positiva-botao-style:hover {
+    -fx-font-size: 18px;
+    -fx-text-fill: white;
+    -fx-font-family: "Times New Roman";
+    -fx-background-color: #5c66ae;
+    -fx-padding: 10;
+    -fx-background-radius: 10;
+}
+
+
+/* Background style for the VBox */
+.carta-negativa-vbox-style {
+    -fx-background-color: #F13131;
+    -fx-background-radius: 20;
+    -fx-padding: 20;
+}
+
+/* Style for the label "Carta Positiva" */
+.carta-negativa-label {
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-background-color: #8D2C2C;
+    -fx-padding: 10;
+    -fx-background-radius: 10;
+}
+
+/* Style for the TextArea */
+.carta-negativa-content {
+    -fx-background-color: #F39494;
+    -fx-padding: 10;
+    -fx-background-radius: 10;
+    -fx-font-size: 20px;
+    -fx-font-family: "Times New Roman";
+    -fx-text-fill: rgb(0, 0, 0);
+}
+
+/* Style for the buttons */
+.carta-negativa-botao-style {
+    -fx-font-size: 18px;
+    -fx-text-fill: white;
+    -fx-background-color: #8D2C2C;
+    -fx-padding: 10;
+    -fx-background-radius: 10;
+}
+.carta-negativa-botao-style:hover {
+    -fx-font-size: 18px;
+    -fx-text-fill: white;
+    -fx-background-color: #B40000;
+    -fx-padding: 10;
+    -fx-background-radius: 10;
+}

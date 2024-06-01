@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TelaCartaPositiva",
+            "request": "launch",
+            "mainClass": "com.dilemadaprivacidade/com.dilema.telas.TelaCartaPositiva",
+            "projectName": "dilema"
+        },
+        {
+            "type": "java",
+            "name": "TelaCartaNegativa",
+            "request": "launch",
+            "mainClass": "com.dilemadaprivacidade/com.dilema.telas.TelaCartaNegativa",
+            "projectName": "dilema"
+        },
+        {
+            "type": "java",
             "name": "Doido",
             "request": "launch",
             "mainClass": "com.dilemadaprivacidade/com.dilema.telas.Doido",

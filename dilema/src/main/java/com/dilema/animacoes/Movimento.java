@@ -9,11 +9,11 @@ import javafx.util.Duration;
 public class Movimento {
     private Tabuleiro tabuleiro = new Tabuleiro();
 
-    public void andarCasas(int numDado, int posic, ImageView player, Runnable onFinish) {
+    public void andarCasas(int numDado, int posic, ImageView player, Runnable fimAnimacao) {
         SequentialTransition sequenciaDeAnimacao = new SequentialTransition();
 
         for (int i = 1; i <= numDado; i++) {
-            TranslateTransition movimento = new TranslateTransition(Duration.millis(500), player);
+            TranslateTransition movimento = new TranslateTransition(Duration.millis(300), player);
 
             int proxPosic = (posic + i) < tabuleiro.getLength() ? posic + i : tabuleiro.getLength() - 1;
             
@@ -28,9 +28,33 @@ public class Movimento {
              
             player.setTranslateX(tabuleiro.colocarPlayerX(novaPosic));
             player.setTranslateY(tabuleiro.colocarPlayerY(novaPosic));
-            onFinish.run();
+            fimAnimacao.run();
+            
         });
+        sequenciaDeAnimacao.play();
+    }
+    public void voltarCasas(int numDado, int posic, ImageView player, Runnable fimAnimacao){
+        SequentialTransition sequenciaDeAnimacao = new SequentialTransition();
 
+        for (int i = 1; i <= numDado; i++) {
+            TranslateTransition movimento = new TranslateTransition(Duration.millis(300), player);
+
+            int proxPosic = (posic - i);
+            
+            movimento.setToX(tabuleiro.colocarPlayerX(proxPosic));
+            movimento.setToY(tabuleiro.colocarPlayerY(proxPosic));
+
+            sequenciaDeAnimacao.getChildren().add(movimento);
+        }
+        
+        sequenciaDeAnimacao.setOnFinished(e -> {
+            int novaPosic = posic - numDado;
+             
+            player.setTranslateX(tabuleiro.colocarPlayerX(novaPosic));
+            player.setTranslateY(tabuleiro.colocarPlayerY(novaPosic));
+            fimAnimacao.run();
+            
+        });
         sequenciaDeAnimacao.play();
     }
 }

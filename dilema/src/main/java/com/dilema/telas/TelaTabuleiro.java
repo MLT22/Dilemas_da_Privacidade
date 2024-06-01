@@ -59,16 +59,21 @@ public class TelaTabuleiro extends Application {
         }
     }
 
-    private void jogarVez() {
+    private void jogarVez(Runnable esperaVez) {
 
         Player jogador = jogadores.get(jogadorAtual);
-        jogador.andarCasas();
+        jogador.andarCasas(() -> {
+            jogador.vezJogador = false;
+            
+            // Passa a vez para o próximo jogador
+            jogadorAtual = (jogadorAtual + 1) % jogadores.size();
+            jogadores.get(jogadorAtual).vezJogador = true;
+            
+            // Reativar o botão apos a jogada do player
+            esperaVez.run();
+        });
         resultadoDado.setText("" + jogador.numTeste);
-        jogador.vezJogador = false;
 
-        // Passa a vez para o próximo jogador
-        jogadorAtual = (jogadorAtual + 1) % jogadores.size();
-        jogadores.get(jogadorAtual).vezJogador = true;
     }
 
 
@@ -86,21 +91,8 @@ public class TelaTabuleiro extends Application {
 
 
         // criando um num de jogadores
-        numeroDeJogadores("amarelo.png", "ciano.png","laranja.png");
+        numeroDeJogadores("amarelo.png");
 
-       // Botão para abrir a tela de Carta Positiva
-       Button abrirCartaPositivaButton = new Button("Abrir Carta Positiva");
-       abrirCartaPositivaButton.setTranslateX(tabuleiro.convertePontoCentral(5));
-       abrirCartaPositivaButton.setTranslateY(tabuleiro.convertePontoCentral(10));
-       abrirCartaPositivaButton.setOnAction(e -> {
-           CartaPositivaScreen cartaPositivaScreen = new CartaPositivaScreen();
-           Stage cartaStage = new Stage();
-           try {
-               cartaPositivaScreen.start(cartaStage);
-           } catch (Exception ex) {
-               ex.printStackTrace();
-           }
-       });
 
 
         // criando o botão para jogar o dado
@@ -108,11 +100,12 @@ public class TelaTabuleiro extends Application {
         botaoJogar.setTranslateX(tabuleiro.convertePontoCentral(0));
         botaoJogar.setTranslateY(tabuleiro.convertePontoCentral(10));
         botaoJogar.setOnAction(new EventHandler<ActionEvent>() {
-        
             @Override
             public void handle(ActionEvent event){
-            
-            jogarVez();
+                botaoJogar.setDisable(true);
+                jogarVez(() -> {
+                    botaoJogar.setDisable(false);
+                });
             }
         });
         root.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
@@ -140,7 +133,7 @@ public class TelaTabuleiro extends Application {
         for (Player jogador : jogadores) { // Adiciona os jogadores ao grupo
             tileGroup.getChildren().add(jogador.getPlayer());
         }
-        tileGroup.getChildren().addAll(botaoJogar, resultadoDado, abrirCartaPositivaButton); // Adiciona o botão e o label de resultado
+        tileGroup.getChildren().addAll(botaoJogar, resultadoDado); // Adiciona o botão e o label de resultado
 
         return root;
     }
@@ -154,7 +147,7 @@ public class TelaTabuleiro extends Application {
         primaryStage.setTitle("Dilemas da Privacicade");
         primaryStage.setScene(cena);
         primaryStage.show();
-        // primaryStage.setFullScreen(true);
+   
     }
 
 
