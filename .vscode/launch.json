@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Tabuleiro",
+            "request": "launch",
+            "mainClass": "com.dilemadaprivacidade/com.dilema.classes.Tabuleiro",
+            "projectName": "dilema"
+        },
+        {
+            "type": "java",
             "name": "TelaCartaPositiva",
             "request": "launch",
             "mainClass": "com.dilemadaprivacidade/com.dilema.telas.TelaCartaPositiva",

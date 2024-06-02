@@ -7,6 +7,7 @@ import javafx.scene.input.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dilema.animacoes.Dado;
 import com.dilema.classes.Player;
 import com.dilema.classes.Tabuleiro;
 
@@ -32,13 +33,14 @@ import javafx.stage.Stage;
 public class TelaTabuleiro extends Application {
 
 
-    private Label resultadoDado;
 
     // Escolhendo o tamanho do tabuleiro
     private Tabuleiro tabuleiro = new Tabuleiro();
     private static final int tileSize = 50; // Tamanhao de cada casa
-    private static final int width = 20; //Largura do tabulero
-    private static final int height = 10; //Altura do tabuelro
+    private static final int width = 21; //Largura do tabulero
+    private static final int height = 11; //Altura do tabuelro
+
+    private Dado dado = new Dado(11, 11);
     
     public static int getTilesize() {
         return tileSize;
@@ -62,17 +64,20 @@ public class TelaTabuleiro extends Application {
     private void jogarVez(Runnable esperaVez) {
 
         Player jogador = jogadores.get(jogadorAtual);
-        jogador.andarCasas(() -> {
-            jogador.vezJogador = false;
-            
-            // Passa a vez para o próximo jogador
-            jogadorAtual = (jogadorAtual + 1) % jogadores.size();
-            jogadores.get(jogadorAtual).vezJogador = true;
-            
-            // Reativar o botão apos a jogada do player
-            esperaVez.run();
+        dado.animacaoDado(() -> {
+            jogador.andarCasas(dado.getNumDado(),() -> {
+                jogador.vezJogador = false;
+                
+                // Passa a vez para o próximo jogador
+                jogadorAtual = (jogadorAtual + 1) % jogadores.size();
+                jogadores.get(jogadorAtual).vezJogador = true;
+                
+                // Reativar o botão apos a jogada do player
+                esperaVez.run();
+            });
         });
-        resultadoDado.setText("" + jogador.numTeste);
+
+        
 
     }
 
@@ -98,7 +103,7 @@ public class TelaTabuleiro extends Application {
         // criando o botão para jogar o dado
         var botaoJogar = new Button("Jogar dado");
         botaoJogar.setTranslateX(tabuleiro.convertePontoCentral(0));
-        botaoJogar.setTranslateY(tabuleiro.convertePontoCentral(10));
+        botaoJogar.setTranslateY(tabuleiro.convertePontoCentral(11));
         botaoJogar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
@@ -117,12 +122,13 @@ public class TelaTabuleiro extends Application {
 
 
         // Número tirado no dado
-        resultadoDado = new Label("0");
-        resultadoDado.setTranslateX(tabuleiro.convertePontoCentral(11));
-        resultadoDado.setTranslateY(tabuleiro.convertePontoCentral(10));
+        // resultadoDado = new Label("0");
+        // resultadoDado.setTranslateX(tabuleiro.convertePontoCentral(11));
+        // resultadoDado.setTranslateY(tabuleiro.convertePontoCentral(11));
+        
 
         // imagem do tabuleiro
-        Image img = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/tabuleiro/prototipo.png"));
+        Image img = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/tabuleiro/tabuleiro.png"));
         ImageView bgImage = new ImageView();
         bgImage.setImage(img);
         bgImage.setFitHeight(height * tileSize);
@@ -133,7 +139,8 @@ public class TelaTabuleiro extends Application {
         for (Player jogador : jogadores) { // Adiciona os jogadores ao grupo
             tileGroup.getChildren().add(jogador.getPlayer());
         }
-        tileGroup.getChildren().addAll(botaoJogar, resultadoDado); // Adiciona o botão e o label de resultado
+        tileGroup.getChildren().addAll(botaoJogar); // Adiciona o botão e o label de resultado
+        tileGroup.getChildren().add(dado.getDado());
 
         return root;
     }
@@ -143,7 +150,7 @@ public class TelaTabuleiro extends Application {
     @Override
     public void start (Stage primaryStage) throws Exception{
         //Configuração da tela
-        Scene cena = new Scene(criarTela(),width * tileSize, (height * tileSize) + 80);
+        Scene cena = new Scene(criarTela(),width * tileSize, (height * tileSize) + 85);
         primaryStage.setTitle("Dilemas da Privacicade");
         primaryStage.setScene(cena);
         primaryStage.show();

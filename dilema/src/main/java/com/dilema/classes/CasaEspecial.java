@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class CasaEspecial {
-    private int[] posicCasaEspecial = {5, 11, 18, 22, 27, 32, 37, 41, 46, 51};
+    private int[] posicCasaEspecial = {6,11,17,24,30,35,40,47,53};
     private boolean casaEspecial;
     private int posicFinal;
 
@@ -36,8 +36,7 @@ public class CasaEspecial {
     
                 TelaCartaPositiva cartaPositiva = new TelaCartaPositiva(numCasas, () -> {
                     avancar.andarCasas(numCasas, posic, player, () -> {
-                        posicFinal = posic + numCasas;
-                        System.out.println("PosiCasaEspecial: " + posicFinal);
+                        posicFinal = posic + numCasas;                       
                         fimCartaEspecial.run();
                     });
                 });
