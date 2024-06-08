@@ -1,5 +1,7 @@
 package com.dilema.telas;
 
+import com.dilema.dbcartas.InfoCarta;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,9 +16,18 @@ public class TelaCartaNegativa extends Application {
     private int numCasas; 
     private Runnable fimCarta;
 
+    private String hist;
+    private String just;
+
     public TelaCartaNegativa(int numCasas ,Runnable fimCarta) {
         this.numCasas = numCasas; 
         this.fimCarta = fimCarta;
+
+        InfoCarta informacaoCarta = new InfoCarta();
+        informacaoCarta.obterConteudo(2);
+        hist = informacaoCarta.getHist();
+        just = informacaoCarta.getJust();
+
     }
 
 
@@ -35,15 +46,15 @@ public class TelaCartaNegativa extends Application {
         // Cria o label "Carta Positiva"
         Label cartaPositivaLabel = new Label("Carta Negativa");
         cartaPositivaLabel.getStyleClass().add("carta-negativa-label");
-        cartaPositivaLabel.setTranslateX(80);
+        cartaPositivaLabel.setTranslateX(105);
 
         // Conteúdo da carta
         VBox cartaContent = new VBox();
         cartaContent.setSpacing(5);
         cartaContent.getStyleClass().add("carta-negativa-content");
 
-        Text histCarta = new Text("Históriaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        Text justCarta = new Text("\nPoisfkaslfjaslsfjaldflajlfasdfalsfasjfaksjflsajlfkjçkl");
+        Text histCarta = new Text(hist);
+        Text justCarta = new Text("\n" + just);
         Text avancarCasas = new Text("\nRetorne: " + numCasas + " casas");
 
         TextFlow corretorTexto = new TextFlow();
@@ -54,7 +65,7 @@ public class TelaCartaNegativa extends Application {
         // Cria o botão "Fechar"
         Button fecharButton = new Button("Fechar");
         fecharButton.getStyleClass().add("carta-negativa-botao-style");
-        fecharButton.setTranslateX(120);
+        fecharButton.setTranslateX(140);
         
         
         fecharButton.setOnAction(e ->{
@@ -66,7 +77,7 @@ public class TelaCartaNegativa extends Application {
         vbox.getChildren().addAll(cartaPositivaLabel, cartaContent, fecharButton);
 
         // Cria a cena
-        Scene scene = new Scene(vbox, 350, 400);
+        Scene scene = new Scene(vbox, 400, 410);
 
         // Adiciona o arquivo CSS à cena
         scene.getStylesheets().add(getClass().getResource("/com/dilema/css/cartas.css").toExternalForm());

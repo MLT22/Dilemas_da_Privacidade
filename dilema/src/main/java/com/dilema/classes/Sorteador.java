@@ -3,21 +3,23 @@ package com.dilema.classes;
 import java.util.Random;
 
 public class Sorteador {
+    Random sorteador = new Random();
   
-    public int sortearDado(){
-        var dado = new Random();
-        int numDado = dado.nextInt(6) + 1;
+    public int sortearDado(){       
+        int numDado = sorteador.nextInt(6) + 1;
         return numDado;
     }
-    public int sortearCasaEspecial(){
-        var dado = new Random();
-        int tipoCasaEspecial = dado.nextInt(2) + 1;
+    public int sortearCasaEspecial(){        
+        int tipoCasaEspecial = sorteador.nextInt(2) + 1;
         return tipoCasaEspecial;
     }
-    public int sortearNumCasas(){
-        var dado = new Random();
-        int numCasasAndar = dado.nextInt(3) + 2;
+    public int sortearNumCasas(){      
+        int numCasasAndar = sorteador.nextInt(3) + 2;
         return numCasasAndar;
+    }
+    public int sortrearIdCarta(int tamanhoLista){
+        int idCarta = sorteador.nextInt(tamanhoLista);
+        return idCarta;
     }
 
 }
