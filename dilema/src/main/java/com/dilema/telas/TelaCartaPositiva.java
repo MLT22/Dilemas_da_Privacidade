@@ -20,7 +20,7 @@ public class TelaCartaPositiva extends Application {
     private String just;
 
 
-    public TelaCartaPositiva(int numCasas, Runnable fimCarta) {
+    public TelaCartaPositiva(int numCasas ,Runnable fimCarta) {
         this.numCasas = numCasas; 
         this.fimCarta = fimCarta;
 
