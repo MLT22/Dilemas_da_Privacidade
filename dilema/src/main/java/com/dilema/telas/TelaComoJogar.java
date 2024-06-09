@@ -20,7 +20,7 @@ public class TelaComoJogar extends Application{
   public void start(Stage tutorialStage) throws Exception {
     Label explica = new Label();
     explica.setAlignment(Pos.TOP_LEFT);
-    explica.setText("Nesse jogo iremos ver como as Leis Gerais de Proteção de Dados, também conhecidas como LGPD, estão presentes em nossas vidas seja de maneira positiva ou até punitiva,onde nesse jogo ganha quem chega no final do tabuleiro. \nApós clicar em jogar AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbbbbbbbbbbbbbbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBB");
+    explica.setText("Nesse jogo iremos ver como as Leis Gerais de Proteção de Dados, também conhecidas como LGPD, estão presentes em nossas vidas seja de maneira positiva ou até punitiva,onde nesse jogo ganha quem chega no final do tabuleiro. \nApós clicar em jogar clique no botão no canto superior direito para adicionar jogadores, de para eles um peão e um nome sem repetir nomes, após configurar todos os jogadores, clique no botão jogar dado para andar, ganha quem chegar no final primeiro");
     explica.setMinWidth(600);
     explica.setMinHeight(450);
     explica.setFont(Font.font("Times New Roman", 20));

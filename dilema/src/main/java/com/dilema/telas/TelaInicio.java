@@ -31,10 +31,8 @@ public class TelaInicio  extends Application{
     comojogar.setFont(Font.font("Times New Roman", 17));
     Button sair = new Button("Sair");
     sair.setFont(Font.font("Times New Roman", 20));
-    Button cartas = new Button("Configurar Cartas");
-    cartas.setFont(Font.font("Times New Roman", 15));
 
-    Button[] buttons = {jogar, comojogar, sair, cartas}; 
+    Button[] buttons = {jogar, comojogar, sair}; 
     setButtonSize(buttons, 125, 75);
     addHoverEffect(jogar, comojogar, sair);
 
@@ -51,13 +49,10 @@ public class TelaInicio  extends Application{
     sair.setOnAction(event -> {
       primaryStage.close();
     });
-    HBox meio = new HBox(109);
-      meio.setAlignment(Pos.CENTER_LEFT);
-      meio.getChildren().addAll(cartas, comojogar);
 
     VBox buttonBox = new VBox(20);
       buttonBox.setAlignment(Pos.CENTER);
-      buttonBox.getChildren().addAll(jogar, meio, sair);
+      buttonBox.getChildren().addAll(jogar, comojogar, sair);
 
     // VBox tudo = new VBox(100);
     //   tudo.setAlignment(Pos.CENTER);
