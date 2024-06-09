@@ -20,10 +20,7 @@ public class TelaInicio  extends Application{
     titulo.setMinWidth(600);
     titulo.setFont(Font.font("Times New Roman", 60));
     titulo.setAlignment(Pos.CENTER);
-    // titulo.setPrefHeight(100);
-    // StackPane roda = new StackPane(titulo);
-    // roda.setAlignment(Pos.CENTER);
-    // BorderPane.setAlignment(titulo, Pos.CENTER);
+ 
 
     Button jogar = new Button("Jogar");
     jogar.setFont(Font.font("Times New Roman", 20));

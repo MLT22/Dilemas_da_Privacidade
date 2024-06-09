@@ -1,0 +1,39 @@
+.tela-vitoria-vbox-style{
+    -fx-background-color: #65C1BE;
+    -fx-background-radius: 20;
+    -fx-padding: 20;
+    -fx-font-size: 50px;
+
+}
+
+.titulo-label{
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, black, 1, 1, 0, 0), dropshadow(gaussian, black, 5, 0.5, 0, 0);
+}
+.conteudo-vbox{
+    -fx-background-color: #417674;
+    -fx-background-radius: 20;
+    -fx-padding: 20;
+    -fx-font-size: 20px;
+    
+
+}
+.conteudo-text{
+    -fx-fill: white;
+
+}
+
+.botoes-button{
+    -fx-background-color: #417674;
+    -fx-background-radius: 20;
+    -fx-padding: 20;
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+}
+.botoes-button:hover{
+    -fx-background-color: #203D3C;
+    -fx-background-radius: 20;
+    -fx-padding: 20;
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+}

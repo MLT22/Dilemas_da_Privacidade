@@ -11,6 +11,7 @@ import com.dilema.animacoes.Dado;
 import com.dilema.classes.Player;
 import com.dilema.classes.Tabuleiro;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -39,38 +40,44 @@ public class TelaTabuleiro extends Application {
     private static final int tileSize = 50; // Tamanhao de cada casa
     private static final int width = 21; //Largura do tabulero
     private static final int height = 11; //Altura do tabuelro
+    
+    private Boolean acabouJogo = false;
 
     private Dado dado = new Dado(11, 11);
+
+
     
     public static int getTilesize() {
         return tileSize;
     }
-
+    public void setAcabouJogo(Boolean acabouJogo) {
+        this.acabouJogo = acabouJogo;
+    }
 
     // Criação dos players
 
     private List<Player> jogadores = new ArrayList<>();//lista para ver quantos player foram instanciado
     private int jogadorAtual = 0;//contador para ver de quem é a vez
 
-    private void numeroDeJogadores (String... cores){//de acordo com o numero de cores que for colocado um Player vai ser instanciado
-        for (int i = 0; i < cores.length;i++){
-            jogadores.add(new Player(cores[i]));//adicionando os player a lista
+    private void numeroDeJogadores (ArrayList<String> cores,ArrayList<String> nomes){//de acordo com o numero de cores que for colocado um Player vai ser instanciado
+        for (int i = 0; i < cores.size();i++){
+            jogadores.add(new Player(cores.get(i),nomes.get(i)));//adicionando os player a lista
         }
         if (!jogadores.isEmpty()){
-            jogadores.get(0).vezJogador = true;//faz o primeiro player poder começar a jogar
+            jogadores.get(0).setVezJogador(true);//faz o primeiro player poder começar a jogar
         }
     }
 
-    private void jogarVez(Runnable esperaVez) {
-
+    private void jogarVez(Stage telaTabuleiro,Runnable esperaVez) {
         Player jogador = jogadores.get(jogadorAtual);
+        System.out.println("Vez do: " + jogador.getNome());
         dado.animacaoDado(() -> {
-            jogador.andarCasas(dado.getNumDado(),() -> {
-                jogador.vezJogador = false;
+            jogador.andarCasas(dado.getNumDado(),telaTabuleiro,() -> {
+                jogador.setVezJogador(false);
                 
                 // Passa a vez para o próximo jogador
                 jogadorAtual = (jogadorAtual + 1) % jogadores.size();
-                jogadores.get(jogadorAtual).vezJogador = true;
+                jogadores.get(jogadorAtual).setVezJogador(true);
                 
                 // Reativar o botão apos a jogada do player
                 esperaVez.run();
@@ -89,14 +96,25 @@ public class TelaTabuleiro extends Application {
     private Group tileGroup = new Group();
 
     
-    private Parent criarTela(){//Criando a tela com o número de casa (width * height) com cada casa com 80 pixels de largura e comprimento
+    private Parent criarTela(Stage telaTabuleiro){//Criando a tela com o número de casa (width * height) com cada casa com 80 pixels de largura e comprimento
         Pane root = new Pane();
         root.setPrefSize(width * tileSize, (height * tileSize) + 80);
         root.getChildren().addAll(tileGroup);
 
 
         // criando um num de jogadores
-        numeroDeJogadores("amarelo.png");
+        ArrayList<String> cores = new ArrayList<>();
+        ArrayList<String> nomes = new ArrayList<>();
+
+        // cores.add("ciano.png");
+        cores.add("laranja.png");
+        // cores.add("roxo.png");
+
+        nomes.add("1");
+        // nomes.add("2");
+        // nomes.add("3");
+
+        numeroDeJogadores(cores,nomes);
 
 
 
@@ -108,7 +126,7 @@ public class TelaTabuleiro extends Application {
             @Override
             public void handle(ActionEvent event){
                 botaoJogar.setDisable(true);
-                jogarVez(() -> {
+                jogarVez(telaTabuleiro,() -> {
                     botaoJogar.setDisable(false);
                 });
             }
@@ -119,13 +137,6 @@ public class TelaTabuleiro extends Application {
             }
         });
 
-
-
-        // Número tirado no dado
-        // resultadoDado = new Label("0");
-        // resultadoDado.setTranslateX(tabuleiro.convertePontoCentral(11));
-        // resultadoDado.setTranslateY(tabuleiro.convertePontoCentral(11));
-        
 
         // imagem do tabuleiro
         Image img = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/tabuleiro/tabuleiro.png"));
@@ -148,14 +159,28 @@ public class TelaTabuleiro extends Application {
   
 
     @Override
-    public void start (Stage primaryStage) throws Exception{
+    public void start (Stage telaTabuleiro) throws Exception{
         //Configuração da tela
-        Scene cena = new Scene(criarTela(),width * tileSize, (height * tileSize) + 85);
-        primaryStage.setTitle("Dilemas da Privacicade");
-        primaryStage.setScene(cena);
-        primaryStage.show();
-   
+        Scene cena = new Scene(criarTela(telaTabuleiro),width * tileSize, (height * tileSize) + 85);
+        telaTabuleiro.setTitle("Dilemas da Privacicade");
+        telaTabuleiro.setScene(cena);
+        telaTabuleiro.show();
+
+        // Use AnimationTimer to periodically check the acabouJogo variable
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                if (acabouJogo) {
+                    telaTabuleiro.close();
+                    stop();
+                }
+            }
+        };
+        timer.start();
     }
+    
+   
+    
 
 
     public static void main(String[] args) {

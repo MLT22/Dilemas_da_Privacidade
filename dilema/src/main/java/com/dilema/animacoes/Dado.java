@@ -51,7 +51,7 @@ public class Dado {
             timeline.getKeyFrames().addAll(keyFrame1, keyFrame2);
         }
         KeyFrame finalFrame = new KeyFrame(Duration.millis(1200), e -> {
-            Image ladoDado = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/dado/dado" + numDado + ".png"));
+            Image ladoDado = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/dado/dado" + 6 + ".png"));
             dado.setImage(ladoDado);
             fimAnimacao.run();
         });

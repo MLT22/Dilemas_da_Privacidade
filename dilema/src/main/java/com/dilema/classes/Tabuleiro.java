@@ -1,8 +1,11 @@
 package com.dilema.classes;
 
+import com.dilema.telas.TelaInicio;
 import com.dilema.telas.TelaTabuleiro;
+import com.dilema.telas.TelaVitoria;
 
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class Tabuleiro {
     private int tamanhoPixel = TelaTabuleiro.getTilesize();
@@ -42,10 +45,17 @@ public class Tabuleiro {
         return posicFinal;
     }
 
-    public void verificarCasa(int posic, ImageView player, Runnable fimVerificacao) {
+    public void verificarCasa(int posic,String nome,String cor, ImageView player,Stage telaTabuleiro, Runnable fimVerificacao) {
         posicFinal = posic;
         if (posic == getLength() - 1) {
-            System.out.println("Venceu");
+            try {
+                TelaVitoria telaVitoria = new TelaVitoria(nome,cor,telaTabuleiro);
+                Stage newStage = new Stage();
+                telaVitoria.start(newStage);
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         } else {
             CasaEspecial casaEspecial = new CasaEspecial();
             if (casaEspecial.verificarCasaEspecial(posic)) {

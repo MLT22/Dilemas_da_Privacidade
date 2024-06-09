@@ -35,10 +35,10 @@ public class TelaConfigurarJogador extends Application {
 
     @Override
     public void start(Stage configurarStage) throws Exception {
-        corPeoes.put("Amarelo", new Image(getClass().getResourceAsStream("/com/dilema/Imagens/peoes/amarelo.png")));
-        corPeoes.put("Ciano", new Image(getClass().getResourceAsStream("/com/dilema/Imagens/peoes/ciano.png")));
-        corPeoes.put("Laranja", new Image(getClass().getResourceAsStream("/com/dilema/Imagens/peoes/laranja.png")));
-        corPeoes.put("Roxo", new Image(getClass().getResourceAsStream("/com/dilema/Imagens/peoes/roxo.png")));
+        corPeoes.put("amarelo", new Image(getClass().getResourceAsStream("/com/dilema/Imagens/peoes/amarelo.png")));
+        corPeoes.put("ciano", new Image(getClass().getResourceAsStream("/com/dilema/Imagens/peoes/ciano.png")));
+        corPeoes.put("laranja", new Image(getClass().getResourceAsStream("/com/dilema/Imagens/peoes/laranja.png")));
+        corPeoes.put("roxo", new Image(getClass().getResourceAsStream("/com/dilema/Imagens/peoes/roxo.png")));
 
         Label infor = new Label();
         infor.setText("Clique no botão ao lado para adicionar mais jogadores, sendo no mínimo 2 e no máximo 4.");
@@ -53,6 +53,7 @@ public class TelaConfigurarJogador extends Application {
         addButton.setFont(Font.font("Times New Roman", 17));
         addButton.setWrapText(true);
 
+
         HBox header = new HBox(10);
         header.setAlignment(Pos.TOP_LEFT);
         header.getChildren().addAll(infor, addButton);
@@ -60,6 +61,14 @@ public class TelaConfigurarJogador extends Application {
         jogarButton = new Button("Jogar");
         jogarButton.setDisable(true);
         jogarButton.setFont(Font.font("Times New Roman", 20));
+        jogarButton.setOnAction(event ->{
+            for(String i : nomePlayer){
+                System.out.println(i);
+            }
+            for(String i : imagePlayer){
+                System.out.println(i);
+            }
+        });
         
         HBox footer = new HBox(jogarButton);
         footer.setAlignment(Pos.BOTTOM_RIGHT);
@@ -167,6 +176,11 @@ public class TelaConfigurarJogador extends Application {
     }
     public static void main(String[] config) {
         launch(config);
+        TelaConfigurarJogador teste = new TelaConfigurarJogador();
+        for(String i : teste.getNomePlayer()){
+            System.out.println(i);
+        }
+
     }
 }
 

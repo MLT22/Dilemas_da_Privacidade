@@ -7,5 +7,5 @@ module com.dilemadaprivacidade {
 
     opens com.dilema.telas to javafx.fxml;
     exports com.dilema.telas;
-    
+
 }
