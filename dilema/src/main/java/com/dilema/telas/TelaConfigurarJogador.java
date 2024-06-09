@@ -98,10 +98,9 @@ public class TelaConfigurarJogador extends Application {
         }
 
         ImageView mostrar = new ImageView();
-        // VBox imagen = new VBox(mostrar);
-        // imagen.setAlignment(Pos.CENTER);
-        // imagen.setStyle("-fx-border-color: black; -fx-padding: 5;");
-        
+        mostrar.setFitWidth(70); // Ajuste o tamanho da imagem
+        mostrar.setFitHeight(70); // Ajuste o tamanho da imagem
+        mostrar.setStyle("-fx-border-color: black; -fx-border-width: 1;");
         
         ChoiceBox<String> escolha1 = new ChoiceBox<>();
         
@@ -125,7 +124,7 @@ public class TelaConfigurarJogador extends Application {
         Button okButton = new Button("Ok");
         okButton.setFont(Font.font("Times New Roman"));
 
-        VBox jogadorContainer = new VBox(15, mostrar, textoMaisCor, nomeJogador, okButton);
+        VBox jogadorContainer = new VBox(35, mostrar, textoMaisCor, nomeJogador, okButton);
         jogadorContainer.setStyle("-fx-border-color: black; -fx-padding: 10;");
         
         jogadoresContainer.getChildren().add(jogadorContainer); 
