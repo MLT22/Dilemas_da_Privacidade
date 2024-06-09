@@ -92,6 +92,17 @@ public class TelaConfigurarJogador extends Application {
                 criarNovoJogadorLayout(jogadoresContainer);
             }
         });
+
+        jogarButton.setOnAction(event -> {
+            try {
+                TelaTabuleiro telinha = new TelaTabuleiro();
+                Stage telaTabuleiro = new Stage();
+                telinha.start(telaTabuleiro);
+                configurarStage.close();
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        });
         
         BorderPane root = new BorderPane();
         root.setTop(header);
