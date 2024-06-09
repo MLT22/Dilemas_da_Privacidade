@@ -43,6 +43,17 @@ public class TelaInicio  extends Application{
         e.printStackTrace();
       }      
     });
+    jogar.setOnAction(event -> {
+      try {
+        TelaConfigurarJogador telaConfigurarJogador = new TelaConfigurarJogador();
+        Stage novaStage = new Stage();
+        telaConfigurarJogador.start(novaStage);
+        primaryStage.close();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    });
+
     sair.setOnAction(event -> {
       primaryStage.close();
     });
