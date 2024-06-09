@@ -1,5 +1,6 @@
 package com.dilema.telas;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -29,6 +30,8 @@ public class TelaConfigurarJogador extends Application {
     private final Set<String> coresSelecionadas = new HashSet<>();
     private Button jogarButton;
     private Button addButton;
+    private final ArrayList<String> nomePlayer = new ArrayList<>();
+    private final ArrayList<String> imagePlayer = new ArrayList<>();
 
     @Override
     public void start(Stage configurarStage) throws Exception {
@@ -132,6 +135,8 @@ public class TelaConfigurarJogador extends Application {
         okButton.setOnAction(event -> {
             if (escolha1.getValue() != null && !nomeJogador.getText().isEmpty()) {
                 coresSelecionadas.add(escolha1.getValue());
+                nomePlayer.add(nomeJogador.getText());
+                imagePlayer.add(escolha1.getValue());
 
                 String selecionadaCor = escolha1.getValue();
                 for (int i = 0; i < jogadoresContainer.getChildren().size(); i++) {
@@ -153,7 +158,13 @@ public class TelaConfigurarJogador extends Application {
             }
         });
     }
+    public ArrayList<String> getNomePlayer() {
+        return nomePlayer;
+    }
 
+    public ArrayList<String> getImagePlayer() {
+        return imagePlayer;
+    }
     public static void main(String[] config) {
         launch(config);
     }
