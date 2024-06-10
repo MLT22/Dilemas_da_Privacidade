@@ -99,7 +99,7 @@ public class TelaConfigurarJogador extends Application {
             .getChildren()
             .addAll(header, jogadoresContainer);
 
-        addButton.setOnAction(event -> {
+        addButton.setOnAction(event -> { //adiciona função do botão para adicionar mais players
             if(playerCount < MAX_JOGADORES) {
                 playerCount++;
                 addButton.setText("Quantidade de jogadores: " + playerCount);
@@ -110,7 +110,7 @@ public class TelaConfigurarJogador extends Application {
             }
         });
 
-        jogarButton.setOnAction(event -> {
+        jogarButton.setOnAction(event -> { // adiciona a funcionabilidade do botão jogar
             try {
                 TelaTabuleiro telinha = new TelaTabuleiro(nomePlayer, imagePlayer);
                 Stage telaTabuleiro = new Stage();
@@ -121,7 +121,7 @@ public class TelaConfigurarJogador extends Application {
             }
         });
 
-        BorderPane root = new BorderPane();
+        BorderPane root = new BorderPane();//adiciona a imagem de fundo
         Image img = new Image(
             getClass().getResourceAsStream("/com/dilema/Imagens/background/fundo.png")
         );
@@ -143,7 +143,7 @@ public class TelaConfigurarJogador extends Application {
         configurarStage.setResizable(false);
     }
 
-    private void criarNovoJogadorLayout(HBox jogadoresContainer) {
+    private void criarNovoJogadorLayout(HBox jogadoresContainer) {// método para criar a telinha que configura o player
         if (playerCount > MAX_JOGADORES) {
             return;
         }
@@ -196,7 +196,7 @@ public class TelaConfigurarJogador extends Application {
             .add(jogadorContainer);
 
         okButton.setOnAction(event -> {
-            if(escolha1.getValue() != null && !nomeJogador.getText().isEmpty()) {
+            if(escolha1.getValue() != null && !nomeJogador.getText().isEmpty()) {//adiciona função ao botão OK 
                 coresSelecionadas.add(escolha1.getValue());
                 nomePlayer.add(nomeJogador.getText());
                 imagePlayer.add(escolha1.getValue());

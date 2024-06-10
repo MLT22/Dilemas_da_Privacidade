@@ -27,10 +27,9 @@ public class TelaComoJogar extends Application {
             "r em jogar clique no botão no canto superior direito para adicionar jogadores," +
             " de para eles um peão e um nome sem repetir nomes, após configurar todos os jo" +
             "gadores, clique no botão jogar dado para andar, ganha quem chegar no final pri" +
-            "meiro"
+            "meiro, ao cair nas casas azuis pode ser que ocorra um evento ruim ou bom, que pode fazer voçe voltar ou avançar casas"
         );
-        explica.setMinWidth(600);
-        explica.setMinHeight(450);
+        explica.setStyle("-fx-background-color:white;-fx-border-color:blue");
         explica.setFont(Font.font("Times New Roman", 20));
         explica.setWrapText(true);
 
