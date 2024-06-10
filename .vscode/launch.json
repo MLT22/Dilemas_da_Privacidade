@@ -6,6 +6,7 @@
     "configurations": [
         {
             "type": "java",
+<<<<<<< Updated upstream
             "name": "TelaVitoria",
             "request": "launch",
             "mainClass": "com.dilemadaprivacidade/com.dilema.telas.TelaVitoria",
@@ -58,6 +59,11 @@
             "name": "CartaPositivaScreen",
             "request": "launch",
             "mainClass": "com.dilemadaprivacidade/com.dilema.telas.CartaPositivaScreen",
+=======
+            "name": "TelaComoJogar",
+            "request": "launch",
+            "mainClass": "com.dilemadaprivacidade/com.dilema.telas.TelaComoJogar",
+>>>>>>> Stashed changes
             "projectName": "dilema"
         },
         {
