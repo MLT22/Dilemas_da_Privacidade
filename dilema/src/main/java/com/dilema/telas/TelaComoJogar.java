@@ -27,15 +27,16 @@ public class TelaComoJogar extends Application {
             "r em jogar clique no botão no canto superior direito para adicionar jogadores," +
             " de para eles um peão e um nome sem repetir nomes, após configurar todos os jo" +
             "gadores, clique no botão jogar dado para andar, ganha quem chegar no final pri" +
-            "meiro, ao cair nas casas azuis pode ser que ocorra um evento ruim ou bom, que pode fazer voçe voltar ou avançar casas"
+            "meiro, ao cair nas casas azuis pode ser que ocorra um evento ruim ou bom, que " +
+            "pode fazer voçe voltar ou avançar casas"
         );
-        explica.setStyle("-fx-background-color:white;-fx-border-color:blue");
+        explica.setStyle("-fx-background-color:black;-fx-border-color:blue");
         explica.setFont(Font.font("Times New Roman", 20));
+        explica.setStyle("-fx-font-fill:white");
         explica.setWrapText(true);
 
         Button exit = new Button("Voltar");
         exit.setAlignment(Pos.CENTER);
-        // exit.setMinHeight(50); exit.setMinWidth(100);
         exit.setMinSize(95, 45);
         exit.setFont(Font.font("Times New Roman", 25));
 
@@ -52,9 +53,7 @@ public class TelaComoJogar extends Application {
 
         VBox junta = new VBox(5);
         junta.setAlignment(Pos.CENTER);
-        junta
-            .getChildren()
-            .addAll(explica, exit);
+        junta.getChildren().addAll(explica, exit);
 
         BorderPane painel = new BorderPane();
         Image img = new Image(
@@ -64,9 +63,7 @@ public class TelaComoJogar extends Application {
         bgImage.setFitWidth(600);
         bgImage.setFitHeight(500);
         bgImage.setPreserveRatio(false);
-        painel
-            .getChildren()
-            .add(bgImage);
+        painel.getChildren().add(bgImage);
         painel.setTop(explica);
         painel.setBottom(exit);
 

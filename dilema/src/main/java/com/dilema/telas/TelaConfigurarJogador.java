@@ -122,16 +122,12 @@ public class TelaConfigurarJogador extends Application {
         });
 
         BorderPane root = new BorderPane();//adiciona a imagem de fundo
-        Image img = new Image(
-            getClass().getResourceAsStream("/com/dilema/Imagens/background/fundo.png")
-        );
+        Image img = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/background/fundo.png"));
         ImageView bgImage = new ImageView(img);
         bgImage.setFitWidth(800);
         bgImage.setFitHeight(600);
         bgImage.setPreserveRatio(false);
-        root
-            .getChildren()
-            .add(bgImage);
+        root.getChildren().add(bgImage);
         root.setTop(header);
         root.setCenter(jogadoresContainer);
         root.setBottom(footer);
@@ -166,16 +162,11 @@ public class TelaConfigurarJogador extends Application {
         corLabel.setFont(Font.font("Times New Roman", 17));
         corLabel.setWrapText(true);
         HBox textoMaisCor = new HBox(1);
-        textoMaisCor
-            .getChildren()
-            .addAll(corLabel, escolha1);
+        textoMaisCor.getChildren().addAll(corLabel, escolha1);
         TextField nomeJogador = new TextField();
         nomeJogador.setPromptText("Digite o nome do jogador: ");
 
-        escolha1
-            .getSelectionModel()
-            .selectedItemProperty()
-            .addListener((observable, oldValue, newValue) -> {
+        escolha1.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                 mostrar.setImage(corPeoes.get(newValue));
             });
 
@@ -191,9 +182,7 @@ public class TelaConfigurarJogador extends Application {
         );
         jogadorContainer.setStyle("-fx-border-color: black; -fx-padding: 10;");
 
-        jogadoresContainer
-            .getChildren()
-            .add(jogadorContainer);
+        jogadoresContainer.getChildren().add(jogadorContainer);
 
         okButton.setOnAction(event -> {
             if(escolha1.getValue() != null && !nomeJogador.getText().isEmpty()) {//adiciona função ao botão OK 
@@ -204,18 +193,10 @@ public class TelaConfigurarJogador extends Application {
                 String selecionadaCor = escolha1.getValue();
                 for (int i = 0; i < jogadoresContainer.getChildren().size(); i++) {
                     if (jogadoresContainer.getChildren().get(i)instanceof VBox) {
-                        VBox existingContainer = (VBox)jogadoresContainer
-                            .getChildren()
-                            .get(i);
-                        HBox hBox = (HBox)existingContainer
-                            .getChildren()
-                            .get(1);
-                        ChoiceBox<String> existingChoiceBox = (ChoiceBox<String>)hBox
-                            .getChildren()
-                            .get(1);
-                        existingChoiceBox
-                            .getItems()
-                            .remove(selecionadaCor);
+                        VBox existingContainer = (VBox)jogadoresContainer.getChildren().get(i);
+                        HBox hBox = (HBox)existingContainer.getChildren().get(1);
+                        ChoiceBox<String> existingChoiceBox = (ChoiceBox<String>)hBox.getChildren().get(1);
+                        existingChoiceBox.getItems().remove(selecionadaCor);
                     }
                 }
 

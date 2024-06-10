@@ -67,9 +67,6 @@ public class TelaInicio extends Application {
             .getChildren()
             .addAll(jogar, comojogar, sair);
 
-        // VBox tudo = new VBox(100);   tudo.setAlignment(Pos.CENTER);
-        // tudo.getChildren().addAll(titulo, buttonBox);
-
         BorderPane root = new BorderPane();
 
         Image img = new Image(
@@ -79,9 +76,7 @@ public class TelaInicio extends Application {
         bgImage.setFitWidth(600);
         bgImage.setFitHeight(500);
         bgImage.setPreserveRatio(false);
-        root
-            .getChildren()
-            .add(bgImage);
+        root.getChildren().add(bgImage);
         root.setTop(titulo);
         root.setCenter(buttonBox);
 
