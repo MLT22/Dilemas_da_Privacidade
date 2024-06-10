@@ -19,10 +19,10 @@ public class Dado {
     Tabuleiro tabuleiro = new Tabuleiro();
 
     
-    public Dado(int x){
+    public Dado(){
         ladoDado = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/dado/dado1.png"));
         dado = new ImageView(ladoDado);
-        dado.setTranslateX(x);
+        
     }
 
     public ImageView getDado() {

@@ -15,7 +15,6 @@ public class Player {
 
 
     private int posic = 0;
-    private boolean vezJogador = false;
 
     private ImageView player;
     private Image imagemPlayer;
@@ -29,12 +28,7 @@ public class Player {
     public String getNome() {
         return nome;
     }
-    public boolean getVezJogador(){
-        return vezJogador;
-    }
-    public void setVezJogador(boolean vezJogador){
-        this.vezJogador = vezJogador;
-    }
+
 
     public Player(String cor, String nome) {
         

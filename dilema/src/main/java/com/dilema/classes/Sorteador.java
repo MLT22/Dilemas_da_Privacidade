@@ -7,7 +7,7 @@ public class Sorteador {
   
     public int sortearDado(){       
         int numDado = sorteador.nextInt(6) + 1;
-        return numDado;
+        return 6;
     }
     public int sortearCasaEspecial(){        
         int tipoCasaEspecial = sorteador.nextInt(2) + 1;

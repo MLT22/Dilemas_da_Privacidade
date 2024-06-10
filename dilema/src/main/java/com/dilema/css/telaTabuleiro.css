@@ -1,6 +1,8 @@
 .roda-pe-hbox{  
-    -fx-background-color: #E94266;
-    -fx-background-radius: 20;
-    -fx-padding: 20;
-    -fx-font-size: 20px;
+    -fx-background-color: #E94266 ;
+    -fx-padding: 10;
+    -fx-font-size: 30px;
+}
+.vez-text{
+    -fx-fill: white;
 }

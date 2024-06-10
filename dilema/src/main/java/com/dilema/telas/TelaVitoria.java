@@ -46,7 +46,7 @@ public class TelaVitoria extends Application {
         conteudo.getStyleClass().add("conteudo-vbox");
         
         // Imagem do player vencedor
-        Image imagemPlayer = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/peoes/" + cor));
+        Image imagemPlayer = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/peoes/" + cor + ".png"));
         ImageView playerVencedor = new ImageView(imagemPlayer);
         playerVencedor.setFitHeight(100);
         playerVencedor.setPreserveRatio(true);
