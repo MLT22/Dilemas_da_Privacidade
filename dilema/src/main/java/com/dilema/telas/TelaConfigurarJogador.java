@@ -105,6 +105,12 @@ public class TelaConfigurarJogador extends Application {
         });
         
         BorderPane root = new BorderPane();
+        Image img = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/background/fundo.png"));
+        ImageView bgImage = new ImageView(img);
+        bgImage.setFitWidth(800);
+        bgImage.setFitHeight(600);
+        bgImage.setPreserveRatio(false);
+        root.getChildren().add(bgImage);
         root.setTop(header);
         root.setCenter(jogadoresContainer);
         root.setBottom(footer);
@@ -113,6 +119,7 @@ public class TelaConfigurarJogador extends Application {
         configurarStage.setTitle("Dilemas da Privacidade: Configurar jogador");
         configurarStage.setScene(preparar);
         configurarStage.show();
+        configurarStage.setResizable(false);
     }
 
     private void criarNovoJogadorLayout(HBox jogadoresContainer) {

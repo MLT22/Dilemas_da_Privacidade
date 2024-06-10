@@ -71,7 +71,9 @@ public class TelaInicio  extends Application{
 
     Image img = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/background/fundo.png"));
     ImageView bgImage = new ImageView(img);
-  
+    bgImage.setFitWidth(600);
+    bgImage.setFitHeight(500);
+    bgImage.setPreserveRatio(false);
     root.getChildren().add(bgImage);
     root.setTop(titulo);
     root.setCenter(buttonBox);
