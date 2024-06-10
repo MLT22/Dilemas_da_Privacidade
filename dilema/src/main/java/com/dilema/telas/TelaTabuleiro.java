@@ -38,7 +38,7 @@ public class TelaTabuleiro extends Application {
 
 
     // Escolhendo o tamanho do tabuleiro
-    private Tabuleiro tabuleiro = new Tabuleiro();
+
     private static final int tileSize = 50; // Tamanhao de cada casa
     private static final int width = 21; //Largura do tabulero
     private static final int height = 11; //Altura do tabuelro
@@ -46,7 +46,7 @@ public class TelaTabuleiro extends Application {
     private ArrayList<String> nomes;
     private ArrayList<String> cores;
 
-    private Dado dado = new Dado(700);
+    private Dado dado = new Dado();
 
     public TelaTabuleiro(ArrayList<String> nomes,ArrayList<String> cores){
         this.nomes = nomes;
@@ -64,26 +64,27 @@ public class TelaTabuleiro extends Application {
 
     private List<Player> jogadores = new ArrayList<>();//lista para ver quantos player foram instanciado
     private int jogadorAtual = 0;//contador para ver de quem é a vez
+    private String nomePlayer;
 
     private void numeroDeJogadores (ArrayList<String> cores,ArrayList<String> nomes){//de acordo com o numero de cores que for colocado um Player vai ser instanciado
         for (int i = 0; i < cores.size();i++){
             jogadores.add(new Player(cores.get(i),nomes.get(i)));//adicionando os player a lista
         }
         if (!jogadores.isEmpty()){
-            jogadores.get(0).setVezJogador(true);//faz o primeiro player poder começar a jogar
+            nomePlayer = jogadores.get(jogadorAtual).getNome();
         }
     }
 
-    private void jogarVez(Stage telaTabuleiro,Runnable esperaVez) {
+    private void jogarVez(Stage telaTabuleiro, Text vez,Runnable esperaVez) {
         Player jogador = jogadores.get(jogadorAtual);
-        System.out.println("Vez do: " + jogador.getNome());
+        
         dado.animacaoDado(() -> {
             jogador.andarCasas(dado.getNumDado(),telaTabuleiro,() -> {
-                jogador.setVezJogador(false);
-                
+          
                 // Passa a vez para o próximo jogador
                 jogadorAtual = (jogadorAtual + 1) % jogadores.size();
-                jogadores.get(jogadorAtual).setVezJogador(true);
+                nomePlayer = jogadores.get(jogadorAtual).getNome();
+                vez.setText("É a vez do " + nomePlayer);
                 
                 // Reativar o botão apos a jogada do player
                 esperaVez.run();
@@ -101,6 +102,7 @@ public class TelaTabuleiro extends Application {
     
     private Group tileGroup = new Group();
     private HBox rodaPe = new HBox();
+    
 
     
     private Parent criarTela(Stage telaTabuleiro){//Criando a tela com o número de casa (width * height) com cada casa com 80 pixels de largura e comprimento
@@ -110,30 +112,43 @@ public class TelaTabuleiro extends Application {
 
 
         // criando um num de jogadores
-        // // ArrayList<String> testec = new ArrayList<>();
-        // // ArrayList<String> testen = new ArrayList<>();
+        // ArrayList<String> testec = new ArrayList<>();
+        // ArrayList<String> testen = new ArrayList<>();
 
         // testec.add("ciano");
+        // testec.add("laranja");
+        // testec.add("amarelo");
 
         // testen.add("1");
+        // testen.add("2");
+        // testen.add("3");
 
         numeroDeJogadores(cores,nomes);
 
         
 
 
+        // "Roda pé"
+        
+        Text vez = new Text("É a vez do " + nomePlayer);
+        vez.getStyleClass().add("vez-text");
 
-
-        // criando o botão para jogar o dado
         var botaoJogar = new Button("Jogar dado");
-        botaoJogar.setTranslateX(600);
+
+        rodaPe.setSpacing(20);
+        rodaPe.getChildren().addAll(botaoJogar,dado.getDado(),vez);
+        rodaPe.getStyleClass().add("roda-pe-hbox");
+
+        
+       
+        
        
         
         botaoJogar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
                 botaoJogar.setDisable(true);
-                jogarVez(telaTabuleiro,() -> {
+                jogarVez(telaTabuleiro,vez,() -> {
                     botaoJogar.setDisable(false);
                 });
             }
@@ -144,10 +159,7 @@ public class TelaTabuleiro extends Application {
             }
         });
 
-        // "Roda pé"
-        Text vez = new Text("É a vez do " );
-        rodaPe.getChildren().addAll(botaoJogar,dado.getDado());
-        rodaPe.setStyle("-fx-background-color: #E94266 ;-fx-padding: 10;-fx-font-size: 30px;");
+        
 
 
         // imagem do tabuleiro
@@ -173,6 +185,7 @@ public class TelaTabuleiro extends Application {
     public void start (Stage telaTabuleiro) throws Exception{
         //Configuração da tela
         Scene cena = new Scene(criarTela(telaTabuleiro),width * tileSize, (height * tileSize) + 95);
+        cena.getStylesheets().add(getClass().getResource("/com/dilema/css/telaTabuleiro.css").toExternalForm());
         telaTabuleiro.setTitle("Dilemas da Privacicade");
         telaTabuleiro.setScene(cena);
         telaTabuleiro.show();
