@@ -95,7 +95,7 @@ public class TelaConfigurarJogador extends Application {
 
         jogarButton.setOnAction(event -> {
             try {
-                TelaTabuleiro telinha = new TelaTabuleiro();
+                TelaTabuleiro telinha = new TelaTabuleiro(nomePlayer,imagePlayer);
                 Stage telaTabuleiro = new Stage();
                 telinha.start(telaTabuleiro);
                 configurarStage.close();
@@ -178,20 +178,10 @@ public class TelaConfigurarJogador extends Application {
             }
         });
     }
-    public ArrayList<String> getNomePlayer() {
-        return nomePlayer;
-    }
 
-    public ArrayList<String> getImagePlayer() {
-        return imagePlayer;
-    }
     public static void main(String[] config) {
         launch(config);
-        TelaConfigurarJogador teste = new TelaConfigurarJogador();
-        for(String i : teste.getNomePlayer()){
-            System.out.println(i);
-        }
-
+        
     }
 }
 

@@ -5,8 +5,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -21,7 +22,7 @@ public class TelaInicio  extends Application{
     titulo.setFont(Font.font("Times New Roman", 60));
     titulo.setAlignment(Pos.CENTER);
  
-
+    
     Button jogar = new Button("Jogar");
     jogar.setFont(Font.font("Times New Roman", 20));
     Button comojogar = new Button("Como Jogar");
@@ -67,8 +68,14 @@ public class TelaInicio  extends Application{
     //   tudo.getChildren().addAll(titulo, buttonBox);
 
     BorderPane root = new BorderPane();
+
+    Image img = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/background/fundo.png"));
+    ImageView bgImage = new ImageView(img);
+  
+    root.getChildren().add(bgImage);
     root.setTop(titulo);
     root.setCenter(buttonBox);
+
     
       Scene scene = new Scene(root, 600, 500);
         primaryStage.setTitle("Dilemas da Privacidade: Tela Inicial");

@@ -11,7 +11,7 @@ import com.dilema.animacoes.Dado;
 import com.dilema.classes.Player;
 import com.dilema.classes.Tabuleiro;
 
-import javafx.animation.AnimationTimer;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,8 +22,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
@@ -41,18 +43,22 @@ public class TelaTabuleiro extends Application {
     private static final int width = 21; //Largura do tabulero
     private static final int height = 11; //Altura do tabuelro
     
-    private Boolean acabouJogo = false;
+    private ArrayList<String> nomes;
+    private ArrayList<String> cores;
 
-    private Dado dado = new Dado(11, 11);
+    private Dado dado = new Dado(700);
+
+    public TelaTabuleiro(ArrayList<String> nomes,ArrayList<String> cores){
+        this.nomes = nomes;
+        this.cores = cores;
+    }
 
 
     
     public static int getTilesize() {
         return tileSize;
     }
-    public void setAcabouJogo(Boolean acabouJogo) {
-        this.acabouJogo = acabouJogo;
-    }
+    
 
     // Criação dos players
 
@@ -94,34 +100,35 @@ public class TelaTabuleiro extends Application {
 
     
     private Group tileGroup = new Group();
+    private HBox rodaPe = new HBox();
 
     
     private Parent criarTela(Stage telaTabuleiro){//Criando a tela com o número de casa (width * height) com cada casa com 80 pixels de largura e comprimento
-        Pane root = new Pane();
-        root.setPrefSize(width * tileSize, (height * tileSize) + 80);
-        root.getChildren().addAll(tileGroup);
+        VBox root = new VBox();
+        root.setPrefSize(width * tileSize, (height * tileSize) + 90);
+        root.getChildren().addAll(tileGroup, rodaPe);
 
 
         // criando um num de jogadores
-        ArrayList<String> cores = new ArrayList<>();
-        ArrayList<String> nomes = new ArrayList<>();
+        // // ArrayList<String> testec = new ArrayList<>();
+        // // ArrayList<String> testen = new ArrayList<>();
 
-        // cores.add("ciano.png");
-        cores.add("laranja.png");
-        // cores.add("roxo.png");
+        // testec.add("ciano");
 
-        nomes.add("1");
-        // nomes.add("2");
-        // nomes.add("3");
+        // testen.add("1");
 
         numeroDeJogadores(cores,nomes);
+
+        
+
 
 
 
         // criando o botão para jogar o dado
         var botaoJogar = new Button("Jogar dado");
-        botaoJogar.setTranslateX(tabuleiro.convertePontoCentral(0));
-        botaoJogar.setTranslateY(tabuleiro.convertePontoCentral(11));
+        botaoJogar.setTranslateX(600);
+       
+        
         botaoJogar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
@@ -137,6 +144,11 @@ public class TelaTabuleiro extends Application {
             }
         });
 
+        // "Roda pé"
+        Text vez = new Text("É a vez do " );
+        rodaPe.getChildren().addAll(botaoJogar,dado.getDado());
+        rodaPe.setStyle("-fx-background-color: #E94266 ;-fx-padding: 10;-fx-font-size: 30px;");
+
 
         // imagem do tabuleiro
         Image img = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/tabuleiro/tabuleiro.png"));
@@ -150,8 +162,7 @@ public class TelaTabuleiro extends Application {
         for (Player jogador : jogadores) { // Adiciona os jogadores ao grupo
             tileGroup.getChildren().add(jogador.getPlayer());
         }
-        tileGroup.getChildren().addAll(botaoJogar); // Adiciona o botão e o label de resultado
-        tileGroup.getChildren().add(dado.getDado());
+        
 
         return root;
     }
@@ -161,22 +172,12 @@ public class TelaTabuleiro extends Application {
     @Override
     public void start (Stage telaTabuleiro) throws Exception{
         //Configuração da tela
-        Scene cena = new Scene(criarTela(telaTabuleiro),width * tileSize, (height * tileSize) + 85);
+        Scene cena = new Scene(criarTela(telaTabuleiro),width * tileSize, (height * tileSize) + 95);
         telaTabuleiro.setTitle("Dilemas da Privacicade");
         telaTabuleiro.setScene(cena);
         telaTabuleiro.show();
 
-        // Use AnimationTimer to periodically check the acabouJogo variable
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                if (acabouJogo) {
-                    telaTabuleiro.close();
-                    stop();
-                }
-            }
-        };
-        timer.start();
+
     }
     
    

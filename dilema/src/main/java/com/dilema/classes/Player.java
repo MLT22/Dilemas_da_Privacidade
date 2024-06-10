@@ -38,7 +38,7 @@ public class Player {
 
     public Player(String cor, String nome) {
         
-        imagemPlayer = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/peoes/" + cor));
+        imagemPlayer = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/peoes/" + cor + ".png"));
         player = new ImageView(imagemPlayer);
         player.setFitHeight(TelaTabuleiro.getTilesize());
         player.setTranslateX(tabuleiro.colocarPlayerX(posic));

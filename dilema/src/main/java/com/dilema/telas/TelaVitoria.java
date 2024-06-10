@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 public class TelaVitoria extends Application {
@@ -29,7 +30,7 @@ public class TelaVitoria extends Application {
 
      @Override
     public void start(Stage primaryStage) {
-        // primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
 
         VBox telaVitoria = new VBox();
         telaVitoria.setSpacing(20);
@@ -88,16 +89,16 @@ public class TelaVitoria extends Application {
         botoes.getChildren().addAll(menu,sair);
 
         telaVitoria.getChildren().addAll(titulo,conteudo,botoes);
-        // Cria a cena
+     
         Scene scene = new Scene(telaVitoria, 400, 410);
 
-        // Adiciona o arquivo CSS à cena
+       
         scene.getStylesheets().add(getClass().getResource("/com/dilema/css/telaVitoria.css").toExternalForm());
 
-        // Define a cena no palco
+      
         primaryStage.setScene(scene);
 
-        // Mostra o palco
+      
         primaryStage.show();
     }
 

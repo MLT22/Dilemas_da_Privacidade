@@ -19,12 +19,10 @@ public class Dado {
     Tabuleiro tabuleiro = new Tabuleiro();
 
     
-    public Dado(int posicX,int posicY){
+    public Dado(int x){
         ladoDado = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/dado/dado1.png"));
         dado = new ImageView(ladoDado);
-        dado.setTranslateX(tabuleiro.converteQuadrado(posicX));
-        dado.setTranslateY(tabuleiro.converteQuadrado(posicY));
-      
+        dado.setTranslateX(x);
     }
 
     public ImageView getDado() {
@@ -44,14 +42,11 @@ public class Dado {
                 Image ladoDado = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/dado/dado" + lado + ".png"));
                 dado.setImage(ladoDado);
             });
-            KeyFrame keyFrame2 = new KeyFrame(Duration.millis(100 * (i * 2)), e -> {
-                Image ladoDado = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/dado/dado" + lado + ".png"));
-                dado.setImage(ladoDado);
-            });
-            timeline.getKeyFrames().addAll(keyFrame1, keyFrame2);
+           
+            timeline.getKeyFrames().addAll(keyFrame1);
         }
         KeyFrame finalFrame = new KeyFrame(Duration.millis(1200), e -> {
-            Image ladoDado = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/dado/dado" + 6 + ".png"));
+            Image ladoDado = new Image(getClass().getResourceAsStream("/com/dilema/Imagens/dado/dado" + numDado + ".png"));
             dado.setImage(ladoDado);
             fimAnimacao.run();
         });
