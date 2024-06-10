@@ -19,20 +19,16 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
 
-/**
- * JavaFX App
- */
+
 public class TelaTabuleiro extends Application {
 
 
@@ -111,21 +107,7 @@ public class TelaTabuleiro extends Application {
         root.getChildren().addAll(tileGroup, rodaPe);
 
 
-        // criando um num de jogadores
-        // ArrayList<String> testec = new ArrayList<>();
-        // ArrayList<String> testen = new ArrayList<>();
-
-        // testec.add("ciano");
-        // testec.add("laranja");
-        // testec.add("amarelo");
-
-        // testen.add("1");
-        // testen.add("2");
-        // testen.add("3");
-
         numeroDeJogadores(cores,nomes);
-
-        
 
 
         // "Roda pé"
